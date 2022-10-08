@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              },
+              fontFamily: {
+                'roboto': ['Roboto', 'sans-serif']
+              }
+            }
+          }
+        }
+      </script>
+    <title>Admin Dashboard</title>
+</head>
+<body class="box-border p-0 m-0 h-[100%] font-roboto">
+    <div class="flex flex-col">
+            <div class="flex h-[100vh]">
+                <!-- Menu section starts from here -->
+
+                <div class="bg-[#1992D4] text-white w-[20rem] h-[] flex flex-col">
+                <figure class="flex pt-6 px-10">
+                    <img src="./src/chart-tree.png" alt="Dashboard_icon" class="w-[48px]">
+                    <figcaption class="pt-4 font-bold pl-4 text-xl">Dashboard</figcaption>
+                </figure>
+                <div class="pt-16 pl-10 ">
+                    <li class="list-none flex flex-col gap-y-4">
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/home.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Home</figcaption>
+                            </figure>
+                        </ul>
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/account-credit-card-outline.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Profile</figcaption>
+                            </figure>
+                        </ul>
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/forum.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Messages</figcaption>
+                            </figure>
+                        </ul>
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/history.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">History</figcaption>
+                            </figure>
+                        </ul>
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/calendar-check-outline.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Tasks</figcaption>
+                            </figure>
+                        </ul>
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/account-group-outline.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Communities</figcaption>
+                            </figure>
+                        </ul>
+                    </li>
+
+                    <li class="list-none pt-24 flex flex-col gap-y-4">
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/cog-outline.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Settings</figcaption>
+                            </figure>
+                        </ul>
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/frequently-asked-questions.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Support</figcaption>
+                            </figure>
+                        </ul>
+                        <ul>
+                            <figure class="flex">
+                                <img src="./src/comment-check-outline.png"
+                                alt="home_icon">
+                                <figcaption class="pl-6 pt-1 font-semibold cursor-pointer">Privacy</figcaption>
+                            </figure>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+
+            <!-- Main starts from here -->
+            <div class=" relative bg-[] w-full text-[black] flex flex-col drop-shadow-md">
+                <div class="w-full flex pt-6 pl-16 pr-2 justify-between pb-2 bg-[]">
+                    <div class="flex">
+                        <img src="./src/magnify.png" alt="search_icon">
+                        <input type="text" placeholder="" class="rounded-lg pr-80 bg-[#E2E8F0] ml-6">
+                    </div>
+                    <div class="flex pr-10">
+                        <img src="./src/bell.png" alt="bell_icon" class="">
+                        <figure class="flex w-full ml-6">
+                            <img src="./src/hero.png" alt="hero_icon" class="w-[24px]">
+                            <figcaption class="font-bold ml-4">Jasurbek Sadiev</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="w-full bg-[] pt-10 pl-16 pb-6 flex justify-between">
+                    <figure class="flex ">
+                        <img src="./src/hero.png" alt="hero_icon" class="w-[52px]">
+                        <figcaption class="flex flex-col pl-6">
+                            <h6 class="text-sm">Hi there,</h6>
+                            <h2 class="font-bold pt-1 text-2xl">Jasurbek Sadiev (@_sadievv_)</h2>
+                        </figcaption>
+                    </figure>
+                    <div class="pt-6 pr-12 flex gap-x-6">
+                        <button type="submit" class="border-2 border-solid border-[#1992D4] bg-[#1992D4] text-[white] rounded-xl px-6 py-1 font-semibold">New</button>
+                        <button type="submit" class="border-2 border-solid border-[#1992D4] bg-[#1992D4] text-[white] rounded-xl px-6 py-1 font-semibold">Upload</button>
+                        <button type="submit" class="border-2 border-solid border-[#1992D4] bg-[#1992D4] text-[white] rounded-xl px-6 py-1 font-semibold">Share</button>
+                    </div>
+                </div>
+                
+                <!-- Body starts from here -->
+                <div class="flex flex-col bg-[#E2E8F0] h-full w-[100%] pt-8 pl-8">
+                    <div class="flex justify-between w-full pb-2 bg-[#E2E8F0] font-bold">
+                        <h2 class="text-xl">Your Projects</h2>
+                        <h2 class="mr-48 text-xl font-bold">Announcements</h2>
+                    </div>
+
+                    <div class="flex justify-between pb-10">
+                        <!-- First column div -->
+                        <div class="flex flex-col gap-y-8">
+                            <div class="w-72 bg-[white] rounded-lg border-t-0 border-r-0 border-b-0 border-l-[#F0B429] border-l-8">
+                                <h2 class="pl-4 pr-20 font-semibold pt-4">Super Cool Project</h2>
+                                <p class="pl-4 pr-20 text-sm font-light leading-tight">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam atque animi.</p>
+                                <div class="flex justify-end gap-x-4 mr-4 pt-6 pb-6">
+                                    <img src="./src/star-remove-outline.png" alt="">
+                                    <img src="./src/eye-plus-outline.png" alt="">
+                                    <img src="./src/share-variant-outline.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="w-72 bg-[white] rounded-lg border-t-0 border-r-0 border-b-0 border-l-[#F0B429] border-l-8">
+                                <h2 class="pl-4 pr-20 font-semibold pt-4">Super Cool Project</h2>
+                                <p class="pl-4 pr-20 text-sm font-light leading-tight">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam atque animi.</p>
+                                <div class="flex justify-end gap-x-4 mr-4 pt-6 pb-6">
+                                    <img src="./src/star-remove-outline.png" alt="">
+                                    <img src="./src/eye-plus-outline.png" alt="">
+                                    <img src="./src/share-variant-outline.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="w-72 bg-[white] rounded-lg border-t-0 border-r-0 border-b-0 border-l-[#F0B429] border-l-8">
+                                <h2 class="pl-4 pr-20 font-semibold pt-4">Super Cool Project</h2>
+                                <p class="pl-4 pr-20 text-sm font-light leading-tight">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam atque animi.</p>
+                                <div class="flex justify-end gap-x-4 mr-4 pt-6 pb-6">
+                                    <img src="./src/star-remove-outline.png" alt="">
+                                    <img src="./src/eye-plus-outline.png" alt="">
+                                    <img src="./src/share-variant-outline.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Second column div -->
+                        <div class="flex flex-col gap-y-8">
+                            <div class="w-72 bg-[white] rounded-lg border-t-0 border-r-0 border-b-0 border-l-8 border-l-[#F0B429]">
+                                <h2 class="pl-4 pr-20 font-semibold pt-4">Super Cool Project</h2>
+                                <p class="pl-4 pr-20 text-sm font-light leading-tight">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam atque animi.</p>
+                                <div class="flex justify-end gap-x-2 mr-4 pt-6 pb-6">
+                                    <img src="./src/star-remove-outline.png" alt="">
+                                    <img src="./src/eye-plus-outline.png" alt="">
+                                    <img src="./src/share-variant-outline.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="w-72 bg-[white] rounded-lg border-t-0 border-r-0 border-b-0 border-l-8 border-l-[#F0B429]">
+                                <h2 class="pl-4 pr-20 font-semibold pt-4">Super Cool Project</h2>
+                                <p class="pl-4 pr-20 text-sm font-light leading-tight">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam atque animi.</p>
+                                <div class="flex justify-end gap-x-2 mr-4 pt-6 pb-6">
+                                    <img src="./src/star-remove-outline.png" alt="">
+                                    <img src="./src/eye-plus-outline.png" alt="">
+                                    <img src="./src/share-variant-outline.png" alt="">
+                                </div>
+                            </div>
+
+                            <div class="w-72 bg-[white] rounded-lg border-t-0 border-r-0 border-b-0 border-l-8 border-l-[#F0B429]">
+                                <h2 class="pl-4 pr-20 font-semibold pt-4">Super Cool Project</h2>
+                                <p class="pl-4 pr-20 text-sm font-light leading-tight">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam atque animi.</p>
+                                <div class="flex justify-end gap-x-2 mr-4 pt-6 pb-6">
+                                    <img src="./src/star-remove-outline.png" alt="">
+                                    <img src="./src/eye-plus-outline.png" alt="">
+                                    <img src="./src/share-variant-outline.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Third column div -->
+                        <div class="flex flex-col">
+                            <div class="flex flex-col w-72 pr-4 bg-[white] mr-16 rounded-lg">
+                                <div class="pl-8 pt-6 pb-2 ">
+                                    <h4 class="font-semibold">Site Maintenance</h4>
+                                    <p class="text-sm font-light leading-tight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, dolor?</p>
+                                </div>
+                                <hr class="ml-8 mr-4"/>
+                                <div class="pl-8 pt-2 pb-2">
+                                    <h4 class="font-semibold">Community Share Day</h4>
+                                    <p class="text-sm font-light leading-tight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, dolor?</p>
+                                </div>
+                                <hr class="ml-8 mr-4"/>
+                                <div class="pl-8 pt-2 pb-6">
+                                    <h4 class="font-semibold">Updated Privacy Policy</h4>
+                                    <p class="text-sm font-light leading-tight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, dolor?</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <h2 class="text-xl font-semibold ml-4 mt-2 mb-2">Trending</h2>
+                                <div class="flex flex-col w-72 pr-4 bg-[white] mr-16 rounded-lg">
+                                    <li class="list-none">
+                                        <ul>
+                                            <figure class="flex pt-4 pb-2 pl-4">
+                                                <img src="./src/icons8-futurama-fry-48.png" alt="home_icon">
+                                                <div class="flex flex-col leading-tight">
+                                                    <figcaption class="pl-4 pt-1 font-semibold cursor-pointer">@tegan</figcaption>
+                                                    <span class="pl-4 font-extralight text-sm">World Peace Builder</span>
+                                                </div>
+                                            </figure>
+
+                                            <figure class="flex pt-2 pb-2 pl-4">
+                                                <img src="./src/icons8-keiji-akaashi-48.png" alt="home_icon">
+                                                <div class="flex flex-col leading-tight">
+                                                    <figcaption class="pl-4 pt-1 font-semibold cursor-pointer">@morgan</figcaption>
+                                                    <span class="pl-4 font-extralight text-sm">Super Cool Projects</span>
+                                                </div>
+                                            </figure>
+
+                                            <figure class="flex pt-2 pb-2 pl-4">
+                                                <img src="./src/icons8-sonic-the-hedgehog-48.png" alt="home_icon">
+                                                <div class="flex flex-col leading-tight">
+                                                    <figcaption class="pl-4 font-semibold cursor-pointer">@alex</figcaption>
+                                                    <span class="pl-4 font-extralight text-sm">No Traffic Maker</span>
+                                                </div>
+                                            </figure>
+                                        </ul>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
