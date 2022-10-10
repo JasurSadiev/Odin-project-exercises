@@ -1,0 +1,64 @@
+html {
+    font-family: sans-serif;
+  }
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20rem;
+}
+  
+  table {
+    border-collapse: collapse;
+    border: 2px solid rgb(177,199,252);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    width: 1000px;
+    height: 1000px;
+  }
+  
+  th {
+    border: 1px solid rgb(112, 154, 251);
+  }
+  
+  td, th {
+    width: 70px;
+    height: 20px;
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  tr:nth-child(even) th {
+    background-color: rgb(174,214,241);
+  }
+  
+  tr:nth-child(odd) th, td{
+    background-color: rgb(235,245,251);
+  }
+  
+  caption {
+    padding: 20px;
+    font-size: 32px;
+    font-weight: 700;
+    color: darkblue;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .sign {
+    border: none;
+  }
+
+  .commitment {
+    border: none;
+  }
+
+  .commit {
+    text-align: left;
+  }
