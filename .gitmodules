@@ -1,0 +1,3 @@
+[submodule "built-in-form-validation/signUp"]
+    path = built-in-form-validation/signUp
+    url = https://github.com/JasurSadiev/Odin-project-exercises/built-in-form-validation/signUp.git
