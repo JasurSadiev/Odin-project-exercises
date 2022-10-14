@@ -12,3 +12,9 @@ body {
     text-align: center;
     align-content: center;
 }
+
+li {
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+}
