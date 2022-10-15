@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>Book App</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Book App</title>
 </head>
 <body>
-    <div>
-        <li class="" id="list">
-            
-        </li>
+  <div class="container">
+    <div class="nav">
+      <strong class="bookApp">BookApp</strong>
+      <button class="btn">Log in</button>
     </div>
+    <div class="main">
+      <input type="button" value="+ Add Book" id="addBookBtn">
+      <div class="books__container"></div>
+    </div>
+    <div class="footer">
+      <p>
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>
+        michalosman
+      </p>
+      <a href="https://github.com/michalosman" target="_blank">
+        <i class="fab fa-github"></i
+      ></a>
+    </div>
+    <div class="form__div">
+      <form class="form" id="form">
+        <input type="text" name="title" id="title" placeholder="Title">
+        <input type="text" name="author" id="author" placeholder="Author">
+        <input type="number" name="page" id="page" min="1" max="10000" placeholder="Page#">
+        <div>
+          <span>Have you read the book?</span>
+          <input type="checkbox" name="checkbox" id="checkbox">
+        </div>
+        <input type="button" id="submitBtn" value="Submit">
+      </form>
+    </div>
+  </div>
 </body>
 <script src="./script.js"></script>
 </html>
