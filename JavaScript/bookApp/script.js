@@ -1,24 +1,15 @@
-let myLibrary = ["You don't know JS", "Why?", "Think Again", "Rich Dad, poor dad" ];
+const addBookBtn = document.querySelector("#addBookBtn");
+const form__div = document.querySelector(".form__div");
+const form = document.querySelector("#form")
 
-function Book() {
-  // the constructor...
-}
+// Opening the pop up window
+addBookBtn.addEventListener('click', () => {
+  form__div.style.display = "flex";
+})
 
-// function addBookToLibrary() {
-//   // do stuff here
-//   let userBook = prompt("What book do you want to add");
-//   myLibrary.push(userBook);
-// }
-
-function showBooks() {
-    for (i = 0; i < myLibrary.length; i++) {
-
-        document.write("<ul>"+myLibrary[i]+"</ul>");
-        
-    }
-}
-
-//addBookToLibrary();
-showBooks();
-
-console.log(myLibrary);
+// Listen for outside click
+window.addEventListener("click", (e) => {
+  if (e.target == form__div) {
+    form__div.style.display = "none";
+  }
+})
