@@ -11,7 +11,7 @@
   <div class="container">
     <div class="nav">
       <strong class="bookApp">BookApp</strong>
-      <button class="btn">Log in</button>
+      <button class="btn" id="loginBtn">Log in</button>
     </div>
     <div class="main">
       <input type="button" value="+ Add Book" id="addBookBtn">
@@ -30,15 +30,16 @@
       ></a>
     </div>
     <div class="form__div">
-      <form class="form" id="form">
-        <input type="text" name="title" id="title" placeholder="Title">
-        <input type="text" name="author" id="author" placeholder="Author">
-        <input type="number" name="page" id="page" min="1" max="10000" placeholder="Page#">
+      <form class="form" id="form" type="submit">
+        <h1>Add new book</h1>
+        <input type="text" name="title" id="title" placeholder="Title" class="" required>
+        <input type="text" name="author" id="author" placeholder="Author" required>
+        <input type="number" name="page" id="page" placeholder="Page#" min="1" max="10000" required>
         <div>
           <span>Have you read the book?</span>
           <input type="checkbox" name="checkbox" id="checkbox">
         </div>
-        <input type="button" id="submitBtn" value="Submit">
+        <input type="submit" id="submitBtn" value="Submit">
       </form>
     </div>
   </div>
