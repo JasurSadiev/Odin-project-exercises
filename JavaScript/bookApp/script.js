@@ -10,22 +10,7 @@ class Book {
 // UI Class: Handle UI tasks
 class UI {
   static displayBooks() {
-    const storedBooks = [
-      {
-        title: 'Crypto',
-        author: 'Julian Khosp',
-        page: '253',
-        readStatus: false
-      },
-      {
-        title: 'CryptoCurrency',
-        author: 'Julian Khosp',
-        page: '254',
-        readStatus: true
-      }
-    ];
-
-    const books = storedBooks;
+    const books = Store.getBooks();
 
     books.forEach((book) => {
       UI.addBookToList(book);
@@ -45,7 +30,7 @@ class UI {
         </div>
         <div class="book__section">
           <span>"${book.title}"</span>
-          <span> ${book.author}</span>
+          <span class="book__section_author"> ${book.author}</span>
           <span> ${book.page}</span>
         </div>
       </div>
@@ -89,8 +74,38 @@ class UI {
 }
 // Store Class: Handles Storage
 
+class Store {
+  static getBooks() {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+    return books;
+  }
+
+  static addBook(book) {
+    const books = Store.getBooks();
+    books.push(book);
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+
+  static removeBook(title) {
+    const books = Store.getBooks();
+    books.forEach((book, index) => {
+      console.log(typeof(book.title));
+      if(`"${book.title}"` == title) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));;
+  }
+}
+
 // Event: display Books
-document.addEventListener("DOMContentLoaded", UI.displayBooks);
+document.addEventListener("DOMContentLoaded", UI.displayBooks());
 
 // Event: Add a Book
 document.querySelector("#form").addEventListener("submit", (e) => {
@@ -110,18 +125,25 @@ document.querySelector("#form").addEventListener("submit", (e) => {
   // Add book to UI
   UI.addBookToList(book);
 
+  // Add book to Store
+  Store.addBook(book);
+
   // Clear input Fields
   UI.clearInputFields();
 
   // Closing the form after Submit
   form__div.style.display = "none";
 
-  UI.showAlert("New bool Successfully has been added!", 'success');
+  UI.showAlert("New book Successfully has been added!", 'success');
 });
 
 // Event: Remove a Book
 document.querySelector(".books__container").addEventListener("click", (e) => {
   UI.deleteBook(e.target);
+
+  // Remove book from the Store
+  Store.removeBook(e.target.previousElementSibling.previousElementSibling.childNodes[2].nextElementSibling.firstChild.nextSibling.textContent);
+  // console.log(e.target.previousElementSibling.previousElementSibling.childNodes[2].nextElementSibling.firstChild.nextSibling.innerText);
   
 });
 
