@@ -321,6 +321,15 @@ form input {
   text-align: center;
 }
 
+#title, #author, #page{
+  border: 2px solid rgb(240,238,241);
+}
+#title:focus, #author:focus, #page:focus{
+  outline: none !important;
+  border:2px solid rgb(72, 151, 212);
+  box-shadow: 0 0 10px #719ECE;
+}
+
 .book {
   display: flex;
   flex-direction: row;
