@@ -154,15 +154,23 @@ document.querySelector(".books__container").addEventListener("click", (e) => {
 
 
 const addBookBtn = document.querySelector("#addBookBtn");
-const form__div = document.querySelector(".form__div")
+const form__div = document.querySelector(".form__div");
+const loginBtn = document.querySelector("#loginBtn");
+const login__div = document.querySelector("#login__div");
 // Opening the pop up window
 addBookBtn.addEventListener('click', () => {
   form__div.style.display = "flex";
 });
 
+// Opening the login popup window
+loginBtn.addEventListener('click', (e) => {
+  login__div.style.display = "flex";
+});
 // Listen for outside click
 window.addEventListener("click", (e) => {
   if (e.target == form__div) {
     form__div.style.display = "none";
+  } else if (e.target == login__div) {
+    login__div.style.display = "none"
   }
 })
