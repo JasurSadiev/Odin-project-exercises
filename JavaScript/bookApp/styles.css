@@ -31,6 +31,10 @@ strong {
   cursor: pointer;
 }
 
+#accountBtn, #logoutBtn {
+  display: none;
+}
+
 /* Main styling starts from here */
 
 .main {
@@ -351,3 +355,32 @@ form input {
   text-align: right;
   font-weight: 600;
 }
+
+/* Login Style */
+
+.login__div {
+  display: flex;
+}
+
+#login__div {
+  display: none;
+  z-index: 1;
+  
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.input__div {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__div > input {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
