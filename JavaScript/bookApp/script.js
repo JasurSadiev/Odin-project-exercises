@@ -105,7 +105,7 @@ class Store {
 }
 
 // Event: display Books
-document.addEventListener("DOMContentLoaded", UI.displayBooks());
+
 
 // Event: Add a Book
 document.querySelector("#form").addEventListener("submit", (e) => {
@@ -156,21 +156,94 @@ document.querySelector(".books__container").addEventListener("click", (e) => {
 const addBookBtn = document.querySelector("#addBookBtn");
 const form__div = document.querySelector(".form__div");
 const loginBtn = document.querySelector("#loginBtn");
-const login__div = document.querySelector("#login__div");
+const accountBtn = document.querySelector("#accountBtn");
+const logoutBtn = document.querySelector("#logoutBtn");
+const account = document.querySelector("#account");
+const accountModal = document.querySelector("#accountText");
+
+const setupAccountModal = (user) => {
+  if (user) {
+    accountModal.innerHTML = `
+      <p>Logged in as</p>
+      <p><strong>${user.email.split('@')[0]}</strong></p>`
+  } else {
+    accountModal.innerHTML = ''
+  }
+}
+
 // Opening the pop up window
 addBookBtn.addEventListener('click', () => {
   form__div.style.display = "flex";
 });
 
-// Opening the login popup window
-loginBtn.addEventListener('click', (e) => {
-  login__div.style.display = "flex";
+// Firebase Auth
+const firebaseApp = firebase.initializeApp({
+    apiKey: "AIzaSyBdVe3AOMZaVP2i15ZdnGebdKUMH90LtwA",
+    authDomain: "book-app-33f1f.firebaseapp.com",
+    projectId: "book-app-33f1f",
+    storageBucket: "book-app-33f1f.appspot.com",
+    messagingSenderId: "747748073551",
+    appId: "1:747748073551:web:89a52e5ade17e3dd144a3a",
+    measurementId: "G-R9BR5DLLZD"
 });
-// Listen for outside click
+
+
+
+const auth = firebase.auth();
+
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    accountBtn.style.display = "flex";
+    logoutBtn.style.display = "flex";
+    loginBtn.style.display = "none";
+  } else {
+    document.addEventListener("DOMContentLoaded", UI.displayBooks());
+  }
+  setupAccountModal(user);
+})
+
+const signInWithGoogle = () => {
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(googleProvider)
+  .then(() => {
+    location.reload();
+    console.log()
+    auth.onAuthStateChanged;
+  })
+  .catch(error => {
+    console.log(error);
+  })
+}
+
+const signOut = () => {
+  auth.signOut()
+  accountBtn.style.display = "none";
+    logoutBtn.style.display = "none";
+    loginBtn.style.display = "flex";
+}
+
+
+// // Opening the login popup window
+// loginBtn.addEventListener('click', (e) => {
+//   login__div.style.display = "flex";
+// });
+// // Listen for outside click
+window.addEventListener("click", (e) => {
+  if (e.target == account) {
+    account.style.display = "none";
+  }
+});
+
 window.addEventListener("click", (e) => {
   if (e.target == form__div) {
     form__div.style.display = "none";
-  } else if (e.target == login__div) {
-    login__div.style.display = "none"
   }
 })
+
+accountBtn.addEventListener("click", () => {
+  account.style.display = "flex";
+})
+
+// Events;
+loginBtn.addEventListener("click", signInWithGoogle);
+logoutBtn.addEventListener("click", signOut);
