@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
+  <title>Book App</title>
+  <script
+      src="https://kit.fontawesome.com/4c536a6bd5.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <strong class="bookApp">BookApp</strong>
+      <div class="userBtns">
+        <button class="btn1" id="logoutBtn">Log Out</button>
+        <button class="btn1" id="accountBtn">Account</button>
+      </div>
+      <button class="btn" id="loginBtn">Log in</button>
+    </div>
+    <div class="main">
+      <input type="button" value="+ Add Book" id="addBookBtn">
+      <div class="books__container"></div>
+    </div>
+    <div class="footer">
+      <p>
+        Copyright ©
+        <script>
+          document.write(new Date().getFullYear())
+        </script>
+        Jasur Sadiev
+      </p>
+      <a href="https://github.com/JasurSadiev/" target="_blank">
+        <i class="fab fa-github"></i
+      ></a>
+    </div>
+    <div class="form__div">
+      <form class="form" id="form" type="submit">
+        <h1>Add new book</h1>
+        <input type="text" name="title" id="title" placeholder="Title" class="" required autocomplete="off">
+        <input type="text" name="author" id="author" placeholder="Author" required autocomplete="off">
+        <input type="number" name="page" id="page" placeholder="Page#" min="1" max="10000" required autocomplete="off">
+        <div>
+          <span>Have you read the book?</span>
+          <input type="checkbox" name="checkbox" id="checkbox">
+        </div>
+        <input type="submit" id="submitBtn" value="Submit">
+      </form>
+    </div>
+    <div id="account">
+      <div id="accountText">
+  
+      </div>
+    </div>
+    <div id="login__div">
+      <form id="login__form">
+        <div class="input__div">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email">
+        </div>
+        <div class="input__div">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password">
+        </div>
+        <input type="button" value="Register" id="register">
+        <input type="button" value="Login" id="login">
+      </form>
+    </div>
+  </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+
+<script type="module">
+  const firebaseConfig = {
+    apiKey: "AIzaSyBdVe3AOMZaVP2i15ZdnGebdKUMH90LtwA",
+    authDomain: "book-app-33f1f.firebaseapp.com",
+    projectId: "book-app-33f1f",
+    storageBucket: "book-app-33f1f.appspot.com",
+    messagingSenderId: "747748073551",
+    appId: "1:747748073551:web:89a52e5ade17e3dd144a3a",
+    measurementId: "G-R9BR5DLLZD"
+  };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+<script src="./script1.js"></script>
+</html>
