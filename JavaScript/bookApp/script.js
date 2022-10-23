@@ -196,7 +196,9 @@ auth.onAuthStateChanged(async (user) => {
     accountBtn.style.display = "flex";
     logoutBtn.style.display = "flex";
     loginBtn.style.display = "none";
+    setupRealTimeListener();
   } else {
+    if (unsubscribe) unsubscribe();
     document.addEventListener("DOMContentLoaded", UI.displayBooks());
   }
   setupAccountModal(user);
@@ -247,3 +249,81 @@ accountBtn.addEventListener("click", () => {
 // Events;
 loginBtn.addEventListener("click", signInWithGoogle);
 logoutBtn.addEventListener("click", signOut);
+
+// FireStore
+const db = firebase.firestore()
+let unsubscribe
+
+const setupRealTimeListener = () => {
+  let books = Store.getBooks();
+  unsubscribe = db
+    .collection('books')
+    .where('ownerId', '==', auth.currentUser.uid)
+    .orderBy('createdAt')
+    .onSnapshot((snapshot) => {
+      books = docsToBooks(snapshot.docs)
+    })
+}
+
+const addBookDB = (newBook) => {
+  db.collection('books').add(bookToDoc(newBook))
+}
+
+const removeBookDB = async (title) => {
+  db.collection('books')
+    .doc(await getBookIdDB(title))
+    .delete()
+}
+
+const getBookIdDB = async (title) => {
+  const snapshot = await db
+    .collection('books')
+    .where('ownerId', '==', auth.currentUser.uid)
+    .where('title', '==', title)
+    .get()
+  const bookId = snapshot.docs.map((doc) => doc.id).join('')
+  return bookId
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Utils
+
+const docsToBooks = (docs) => {
+  return docs.map((doc) => {
+    return new Book(
+      doc.data().title,
+      doc.data().author,
+      doc.data().pages,
+      doc.data().isRead
+    )
+  })
+}
+
+const JSONToBook = (book) => {
+  return new Book(book.title, book.author, book.pages, book.isRead)
+}
+
+const bookToDoc = (book) => {
+  return {
+    ownerId: auth.currentUser.uid,
+    title: book.title,
+    author: book.author,
+    pages: book.pages,
+    isRead: book.isRead,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+  }
+}
