@@ -1,11 +1,11 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+  <!-- <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script> -->
   <title>GameGuidez</title>
 </head>
 <body class="grey lighten-3"">
@@ -102,22 +102,7 @@
   <!-- GUIDE LIST -->
   <div class="container" style="margin-top: 40px;">
     <ul class="collapsible z-depth-0 guides" style="border: none;">
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white">Lorem ipsum dolor sit amet.</div>
-      </li>
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
-      <li>
-        <div class="collapsible-header grey lighten-4">Guide title</div>
-        <div class="collapsible-body white"><span>Lorem ipsum dolor sit amet.</span></div>
-      </li>
+      
     </ul>
   </div>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -136,19 +121,19 @@
     };
   
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
+    const app = firebase.initializeApp(firebaseConfig)
 
     // Make auth and firestore references
     const auth = firebase.auth();
     const db = firebase.firestore();
 
     // update firestore settings
-    // db.settings({timestampsInSnapshots: xtrue});
+    db.settings({timestampsInSnapshots: true});
   </script>
   
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="module" src="scripts/auth.js"></script>
-  <script type="module" src="scripts/index.js"></script>
+  <script  src="scripts/index.js"></script>
 </body>
 </html>
