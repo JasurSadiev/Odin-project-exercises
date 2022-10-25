@@ -53,9 +53,9 @@
         <input type="submit" id="submitBtn" value="Submit">
       </form>
     </div>
-    <div id="account">
+    <div id="account__div">
       <div id="accountText">
-  
+        
       </div>
     </div>
     <div id="login__div">
@@ -79,7 +79,7 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
 
-<script type="module">
+<script>
   const firebaseConfig = {
     apiKey: "AIzaSyBdVe3AOMZaVP2i15ZdnGebdKUMH90LtwA",
     authDomain: "book-app-33f1f.firebaseapp.com",
@@ -90,7 +90,10 @@
     measurementId: "G-R9BR5DLLZD"
   };
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  db.settings({timestampsInSnapshots: true});
 </script>
 <script src="./script1.js"></script>
 </html>
