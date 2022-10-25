@@ -1,127 +1,265 @@
-// Book Class:  Represents a Book
-// class Book {
-//     constructor(title, author, page, readStatus) {
-//       this.title = title;
-//       this.author = author;
-//       this.page = page;
-//       this.readStatus = readStatus;
-//     }
-//   }
-//   // UI Class: Handle UI tasks
-//   class UI {
-//     static displayBooks() {
-//       const books = Store.getBooks();
+class Book {
+    constructor(title, author, page, readStatus) {
+      this.title = title;
+      this.author = author;
+      this.page = page;
+      this.readStatus = readStatus;
+    }
+  }
+  // UI Class: Handle UI tasks
+  class UI {
+    static displayBooks() {
+      const books = Store.getBooks();
   
-//       books.forEach((book) => {
-//         UI.addBookToList(book);
-//       })
-//     }
+      books.forEach((book) => {
+        UI.addBookToList(book);
+      })
+    }
     
-//     static addBookToList(book) {
-//         const list = document.querySelector(".books__container")
-//         const book__box = document.createElement('div');
-//         book__box.classList = "book__box"
-//         book__box.innerHTML = `
-//         <div class="book">
-//           <div class="book__section">
-//             <span class="book__section_given">Title:</span> 
-//             <span class="book__section_given">Author:</span> 
-//             <span class="book__section_given">Pages:</span> 
-//           </div>
-//           <div class="book__section">
-//             <span>"${book.title}"</span>
-//             <span class="book__section_author"> ${book.author}</span>
-//             <span> ${book.page}</span>
-//           </div>
-//         </div>
-//           <input type="submit" id="read" class="read" value="Read">
-//           <input type="submit" id="removeBtn" class="removeBtn" value="Remove">
-//         `;
-//         list.appendChild(book__box);
-//     }
+    static addBookToList(book) {
+        if (book) {
+            const list = document.querySelector(".books__container")
+            const book__box = document.createElement('div');
+            book__box.classList = "book__box"
+            book__box.innerHTML = `
+            <div class="book">
+            <div class="book__section">
+            <span class="book__section_given">Title:</span> 
+            <span class="book__section_given">Author:</span> 
+            <span class="book__section_given">Pages:</span> 
+            </div>
+            <div class="book__section">
+            <span>"${book.title}"</span>
+            <span class="book__section_author"> ${book.author}</span>
+            <span> ${book.page}</span>
+            </div>
+            </div>
+            <input type="submit" id="read" class="read" value="Read">
+            <input type="submit" id="removeBtn" class="removeBtn" value="Remove">
+            `;
+            list.appendChild(book__box);
+        } else {
+            console.log("something went wrong!")
+        }
+    }
   
-//     static showAlert(message, className) {
-//       const div = document.createElement('div');
-//       div.className = `alert alert-${className}`;
-//       div.appendChild(document.createTextNode(message));
-//       const main = document.querySelector(".main");
-//       const addBtn = document.querySelector("#addBookBtn");
-//       main.insertBefore(div, addBtn);
+    // static showAlert(message, className) {
+    //   const div = document.createElement('div');
+    //   div.className = `alert alert-${className}`;
+    //   div.appendChild(document.createTextNode(message));
+    //   const main = document.querySelector(".main");
+    //   const addBtn = document.querySelector("#addBookBtn");
+    //   main.insertBefore(div, addBtn);
   
-//       // Vanishing alert in 2 seconds
-//       setTimeout(() => document.querySelector(".alert").remove(), 2000)
+    //   // Vanishing alert in 2 seconds
+    //   setTimeout(() => document.querySelector(".alert").remove(), 2000)
   
-//     }
+    // }
   
-//     static clearInputFields() {
-//       document.querySelector("#title").value = "";
-//       document.querySelector("#author").value = "";
-//       document.querySelector("#page").value = "";
-//     }
+    static clearInputFields() {
+      document.querySelector("#title").value = "";
+      document.querySelector("#author").value = "";
+      document.querySelector("#page").value = "";
+    }
   
-//     static deleteBook(el) {
-//       if (el.classList.contains("removeBtn")) {
-//         el.parentElement.remove();
-//         UI.showAlert("Successfully deleted", "info");
-//       }
-//     }
+    static deleteBook(el) {
+      if (el.classList.contains("removeBtn")) {
+        el.parentElement.remove();
+        UI.showAlert("Successfully deleted", "info");
+      }
+    }
   
-//     static readBook(el) {
-//       if (el.classList.contains("read")) {
-//         el.style.backgroundColor = "red";
-//       }
-//     }
-// }
+    static readBook(el) {
+      if (el.classList.contains("read")) {
+        el.style.backgroundColor = "red";
+      }
+    }
+}
 
-// class Store {
-//     static getBooks() {
-//         if (user) {
+class Store {
+    static getBooks(user) {
+            return [];
+    }
 
-//         } else {
-//             let books;
-//             if (localStorage.getItem('books') === null) {
-//                 books = [];
-//             } else {
-//                 books = JSON.parse(localStorage.getItem('books'));
-//             }
-//             return books;
-//         }
-        
-//     }
+    static addBook(book) {
+        const books = Store.getBooks();
+        books.push(book);
+        // localStorage.setItem('books', JSON.stringify(books));
+    }
 
-//     static addBook(book) {
-//         const books = Store.getBooks();
-//         books.push(book);
-//         localStorage.setItem('books', JSON.stringify(books));
-//     }
-
-//     static removeBook(title) {
-//         const books = Store.getBooks();
-//         books.forEach((book, index) => {
-//         console.log(typeof(book.title));
-//         if(`"${book.title}"` == title) {
-//             books.splice(index, 1);
-//         }
-//         });
-
-//         localStorage.setItem('books', JSON.stringify(books));;
-//     }
-// }
+    // static removeBook(title) {
+    //     const books = Store.getBooks();
+    //     books.forEach((book, index) => {
+    //     console.log(typeof(book.title));
+    //     if(`"${book.title}"` == title) {
+    //         books.splice(index, 1);
+    //     }
+    //     });
+    // }
+}
 
 // Variables
 
 const login = document.getElementById("loginBtn");
 const logout = document.getElementById("logoutBtn");
 const account = document.getElementById("accountBtn");
-const login__div = document.getElementById("login__div")
+const accountText = document.getElementById("accountText");
+const accountDiv = document.getElementById("account__div");
+const login__div = document.getElementById("login__div");
+const loginForm = document.getElementById("login__form");
+const signIn = document.getElementById("login");
+const addBookBtn = document.getElementById("addBookBtn");
+const formDiv = document.querySelector(".form__div");
+const form = document.querySelector("#form");
 
+
+// Listen for auth state changes
+auth.onAuthStateChanged(user => {
+    if (user) {
+        db.collection(user.email).get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                // console.log(doc.data().title, doc.data().author, doc.data().page);
+                const book = new Book(doc.data().title, doc.data().author, doc.data().page);
+                console.log(book);
+                UI.addBookToList(book);
+            });
+        }).catch((err) => {
+            console.log(err.message);
+        });
+
+        // loadBooks(user);
+        Store.getBooks(user);
+        setupNavbar(user);
+        addingBook(user);
+    } else {
+        UI.addBookToList("");
+        Store.getBooks();
+        login.style.display = "flex";
+        logout.style.display = "none";
+        account.style.display = "none";
+    }
+})
 // Eventlisteners
 login.addEventListener("click", () => {
     login__div.style.display = "flex";
+    Form.close(login__div);
+});
+
+// Registering a new User
+register.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // get user info
+    const email = loginForm["email"].value;
+    const password = loginForm["password"].value;
+
+    // signUp user
+    auth.createUserWithEmailAndPassword(email, password).then(cred => {
+        console.log(cred);
+        Form.reset(loginForm, loginForm, login__div);
+        Form.close(login__div)
+    }).catch(err => {
+        console.log(err.message);
+    })
+});
+
+// Login to account
+signIn.addEventListener("click", (e) => {
+    e.preventDefault();
+    // get user info
+    const email = loginForm["email"].value;
+    const password = loginForm["password"].value;
+    auth.signInWithEmailAndPassword(email, password).then(cred => {
+        Form.reset(loginForm, loginForm, login__div);
+        location.reload();
+    })
 })
 
-window.addEventListener("click", (e) => {
-    if (e.target === login__div) {
-        login__div.style.display = "none";
-    }
+// function loadBooks(user) {
+//     if (user) {
+//         db.collection(user.email).get().then((snapshot) => {
+//             snapshot.docs.forEach(doc => {
+//                 // console.log(doc.data().title, doc.data().author, doc.data().page);
+//                 const book = new Book(doc.data().title, doc.data().author, doc.data().page);
+//                 UI.addBookToList(book);
+//             });
+//         }).catch((err) => {
+//             console.log(err.message);
+//         });
+//     } else {
+//         console.log("No user, No books!");
+//     }
+// }
+
+// Logout 
+logout.addEventListener("click", (e) => {
+    location.reload();
+    auth.signOut().then(() => {
+        console.log("Successfully logout!");
+    }).catch((err) => {
+        console.log(err.message);
+    });
+});
+
+// Account details
+account.addEventListener("click", () => {
+    accountDiv.style.display = 'flex';
+    Form.close(accountDiv);
 })
+
+// Setup Navbar
+function setupNavbar(user) {
+    if (user) {
+        login.style.display = "none";
+        logout.style.display = "flex";
+        account.style.display = "flex";
+        
+        //Setting up Account details
+        accountText.innerHTML = `<p class="logged">Logged In as: \n <strong>${user.email}</strong></p>`;
+    }
+}
+
+class Form {
+    static reset(input1, input2, formdiv) {
+        input1["email"].value = "";
+        input2["password"].value = "";
+        formdiv.style.display = "none";
+    }
+    static close(div) {
+        window.addEventListener("click", (e) => {
+            if (e.target == div) {
+                div.style.display = "none";
+            }
+        });
+    }
+}
+
+// Adding a book to UI
+function addingBook(user) {
+    addBookBtn.addEventListener("click", () =>{
+        formDiv.style.display = "flex";
+        Form.close(formDiv);
+    });
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const title = form["title"].value;
+        const author = form["author"].value;
+        const page = form["page"].value;
+
+        const book = new Book(title, author, page);
+        if (user) {
+                db.collection(user.email).doc(title).set({
+                    title: title,
+                    author: author,
+                    page : page
+                });
+        } else {
+            console.log("No user");
+        }
+        UI.addBookToList(book);
+        form["title"].value = "";
+        form["author"].value = "";
+        form["page"].value = "";
+        formDiv.style.display = "none";
+    });
+};
