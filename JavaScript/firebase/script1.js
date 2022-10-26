@@ -111,6 +111,7 @@ const signIn = document.getElementById("login");
 const addBookBtn = document.getElementById("addBookBtn");
 const formDiv = document.querySelector(".form__div");
 const form = document.querySelector("#form");
+const removeBtn = document.getElementById("removeBtn");
 
 
 // Listen for auth state changes
@@ -126,7 +127,6 @@ auth.onAuthStateChanged(user => {
         }).catch((err) => {
             console.log(err.message);
         });
-
         // loadBooks(user);
         Store.getBooks(user);
         setupNavbar(user);
@@ -144,6 +144,8 @@ login.addEventListener("click", () => {
     login__div.style.display = "flex";
     Form.close(login__div);
 });
+
+
 
 // Registering a new User
 register.addEventListener("click", (e) => {
