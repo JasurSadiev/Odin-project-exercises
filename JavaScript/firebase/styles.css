@@ -386,6 +386,13 @@ form input {
 .input__div > input {
   border: 2px solid black;
   border-radius: 10px;
+  padding: 10px 10px;
+}
+
+.input__div > input:focus{
+  outline: none !important;
+  border:2px solid rgb(245, 248, 96);
+  box-shadow: 0 0 10px #719ECE;
 }
 
 #account__div {
@@ -430,9 +437,22 @@ form input {
   border: 1px solid white;
 }
 
-#loginBtn:hover, #login:hover, #register:hover, .userBtns button:hover {
+#loginBtn:hover, .userBtns button:hover {
   border: 1px solid rgb(176, 173, 173);
   background-color: rgb(176, 173, 173);
+  color: white;
+  border-radius: 10px;
+}
+#register:hover {
+  border: 1px solid rgb(176, 173, 173);
+  background-color: rgb(65, 145, 47);
+  color: white;
+  border-radius: 10px;
+}
+
+#login:hover{
+  border: 1px solid rgb(176, 173, 173);
+  background-color: rgb(47, 94, 145);
   color: white;
   border-radius: 10px;
 }
@@ -443,5 +463,11 @@ form input {
   font-size: 20px;
   font-style: italic;
   padding: 5px 10px;
+}
 
+#accountText {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10px;
 }
