@@ -1,9 +1,10 @@
 class Book {
-    constructor(title, author, page, readStatus) {
+    constructor(title, author, page, userId, uid) {
       this.title = title;
       this.author = author;
       this.page = page;
-      this.readStatus = readStatus;
+      this.userId = userId;
+      this.docId = uid;
     }
   }
   // UI Class: Handle UI tasks
@@ -22,7 +23,7 @@ class Book {
             const book__box = document.createElement('div');
             book__box.classList = "book__box"
             book__box.innerHTML = `
-            <div class="book">
+            <div class="book" data-id=${book.docId} data-email=${book.userId}>
             <div class="book__section">
             <span class="book__section_given">Title:</span> 
             <span class="book__section_given">Author:</span> 
@@ -65,7 +66,7 @@ class Book {
     static deleteBook(el) {
       if (el.classList.contains("removeBtn")) {
         el.parentElement.remove();
-        UI.showAlert("Successfully deleted", "info");
+        // UI.showAlert("Successfully deleted", "info");
       }
     }
   
@@ -78,7 +79,20 @@ class Book {
 
 class Store {
     static getBooks(user) {
-            return [];
+        const books = []
+        db.collection(user.email).get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+                // console.log(doc.data().title, doc.data().author, doc.data().page);
+                const book = new Book(doc.data().title, doc.data().author, doc.data().page, user.email, user.uid);
+                deleteBookFromDB(doc);
+                console.log();
+                UI.addBookToList(book);
+                books.push(book);
+            });
+        }).catch((err) => {
+            console.log(err.message);
+        });
+        return books;
     }
 
     static addBook(book) {
@@ -87,15 +101,23 @@ class Store {
         // localStorage.setItem('books', JSON.stringify(books));
     }
 
-    // static removeBook(title) {
-    //     const books = Store.getBooks();
-    //     books.forEach((book, index) => {
-    //     console.log(typeof(book.title));
-    //     if(`"${book.title}"` == title) {
-    //         books.splice(index, 1);
-    //     }
-    //     });
-    // }
+    static removeBook(docId) {
+                // UI.deleteBook(e.target);
+                // console.log(e.target.previousElementSibling.previousElementSibling.childNodes[2].nextElementSibling.firstChild.nextSibling.textContent);
+                db.collection(user.email).doc(docId).delete().then(() => {
+                    console.log(user.email);
+                }).catch((err) => {
+                    console.log(err.message);
+        });
+        // const books = Store.getBooks();
+        // books.forEach((book, index) => {
+        // console.log(typeof(book.title));
+        // if(`"${book.title}"` == title) {
+        //     books.splice(index, 1);
+        // }
+        // });
+
+    }
 }
 
 // Variables
@@ -117,20 +139,11 @@ const removeBtn = document.getElementById("removeBtn");
 // Listen for auth state changes
 auth.onAuthStateChanged(user => {
     if (user) {
-        db.collection(user.email).get().then((snapshot) => {
-            snapshot.docs.forEach(doc => {
-                // console.log(doc.data().title, doc.data().author, doc.data().page);
-                const book = new Book(doc.data().title, doc.data().author, doc.data().page);
-                console.log(book);
-                UI.addBookToList(book);
-            });
-        }).catch((err) => {
-            console.log(err.message);
-        });
+        // deleteBookFromDB(user);
         // loadBooks(user);
         Store.getBooks(user);
         setupNavbar(user);
-        addingBook(user);
+        // addingBook(user);
     } else {
         UI.addBookToList("");
         Store.getBooks();
@@ -237,7 +250,7 @@ class Form {
 }
 
 // Adding a book to UI
-function addingBook(user) {
+function addingBook(doc) {
     addBookBtn.addEventListener("click", () =>{
         formDiv.style.display = "flex";
         Form.close(formDiv);
@@ -249,12 +262,15 @@ function addingBook(user) {
         const page = form["page"].value;
 
         const book = new Book(title, author, page);
-        if (user) {
-                db.collection(user.email).doc(title).set({
-                    title: title,
-                    author: author,
-                    page : page
-                });
+        if (true) {
+                console.log(doc.data())
+                // db.collection(doc.data().userId).doc(doc.id).set({
+                //     title: title,
+                //     author: author,
+                //     page : page,
+                //     userId: doc.data().userId,
+                //     docId: doc.id
+                // });
         } else {
             console.log("No user");
         }
@@ -265,3 +281,19 @@ function addingBook(user) {
         formDiv.style.display = "none";
     });
 };
+
+function deleteBookFromDB(doc) {
+    window.addEventListener("click", (e) => {
+        if (e.target.classList == "removeBtn") {
+            UI.deleteBook(e.target);
+            console.log(e.target.previousElementSibling.previousElementSibling);
+            // db.collection().doc(docId).delete().then(() => {
+                //     console.log(user.email);
+                // }).catch((err) => {
+                    //     console.log(err.message);
+                    // });
+                } else {
+                    console.log(e.target);
+                }
+            });
+}
