@@ -1,165 +1,69 @@
-// Book Class:  Represents a Book
+// Data Structures
+
 class Book {
-  constructor(title, author, page, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.page = page;
-    this.readStatus = readStatus;
-  }
-}
-// UI Class: Handle UI tasks
-class UI {
-  static displayBooks() {
-    const books = Store.getBooks();
-
-    books.forEach((book) => {
-      UI.addBookToList(book);
-    })
-  }
-  
-  static addBookToList(book) {
-      const list = document.querySelector(".books__container")
-      const book__box = document.createElement('div');
-      book__box.classList = "book__box"
-      book__box.innerHTML = `
-      <div class="book">
-        <div class="book__section">
-          <span class="book__section_given">Title:</span> 
-          <span class="book__section_given">Author:</span> 
-          <span class="book__section_given">Pages:</span> 
-        </div>
-        <div class="book__section">
-          <span>"${book.title}"</span>
-          <span class="book__section_author"> ${book.author}</span>
-          <span> ${book.page}</span>
-        </div>
-      </div>
-        <input type="submit" id="read" class="read" value="Read">
-        <input type="submit" id="removeBtn" class="removeBtn" value="Remove">
-      `;
-      list.appendChild(book__box);
-  }
-
-  static showAlert(message, className) {
-    const div = document.createElement('div');
-    div.className = `alert alert-${className}`;
-    div.appendChild(document.createTextNode(message));
-    const main = document.querySelector(".main");
-    const addBtn = document.querySelector("#addBookBtn");
-    main.insertBefore(div, addBtn);
-
-    // Vanishing alert in 2 seconds
-    setTimeout(() => document.querySelector(".alert").remove(), 2000)
-
-  }
-
-  static clearInputFields() {
-    document.querySelector("#title").value = "";
-    document.querySelector("#author").value = "";
-    document.querySelector("#page").value = "";
-  }
-
-  static deleteBook(el) {
-    if (el.classList.contains("removeBtn")) {
-      el.parentElement.remove();
-      UI.showAlert("Successfully deleted", "info");
-    }
-  }
-
-  static readBook(el) {
-    if (el.classList.contains("read")) {
-      el.style.backgroundColor = "red";
-    }
-  }
-}
-// Store Class: Handles Storage
-
-class Store {
-  static getBooks() {
-    let books;
-    if (localStorage.getItem('books') === null) {
-      books = [];
-    } else {
-      books = JSON.parse(localStorage.getItem('books'));
-    }
-    return books;
-  }
-
-  static addBook(book) {
-    const books = Store.getBooks();
-    books.push(book);
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-
-  static removeBook(title) {
-    const books = Store.getBooks();
-    books.forEach((book, index) => {
-      console.log(typeof(book.title));
-      if(`"${book.title}"` == title) {
-        books.splice(index, 1);
-      }
-    });
-
-    localStorage.setItem('books', JSON.stringify(books));;
+  constructor(
+    title = 'Unknown',
+    author = 'Unknown',
+    pages = '0',
+    isRead = false
+  ) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.isRead = isRead
   }
 }
 
-// Event: display Books
+class Library {
+  constructor() {
+    this.books = []
+  }
 
+  addBook(newBook) {
+    if (!this.isInLibrary(newBook)) {
+      this.books.push(newBook)
+    }
+  }
 
-// Event: Add a Book
-document.querySelector("#form").addEventListener("submit", (e) => {
+  removeBook(title) {
+    this.books = this.books.filter((book) => book.title !== title)
+  }
 
-  e.preventDefault();
-  // Get form values
-  const title = document.querySelector("#title").value;
-  const author = document.querySelector("#author").value;
-  const page = document.querySelector("#page").value;
+  getBook(title) {
+    return this.books.find((book) => book.title === title)
+  }
 
-  // Validate
+  isInLibrary(newBook) {
+    return this.books.some((book) => book.title === newBook.title)
+  }
+}
 
+const library = new Library()
 
-  // Instantiate book
-  const book = new Book(title, author, page);
-  
-  // Add book to UI
-  UI.addBookToList(book);
+// User Interface
 
-  // Add book to Store
-  Store.addBook(book);
+const accountBtn = document.getElementById('accountBtn')
+const accountModal = document.getElementById('accountModal')
+const addBookBtn = document.getElementById('addBookBtn')
+const addBookModal = document.getElementById('addBookModal')
+const errorMsg = document.getElementById('errorMsg')
+const overlay = document.getElementById('overlay')
+const addBookForm = document.getElementById('addBookForm')
+const booksGrid = document.getElementById('booksGrid')
+const loggedIn = document.getElementById('loggedIn')
+const loggedOut = document.getElementById('loggedOut')
+const loadingRing = document.getElementById('loadingRing')
 
-  // Clear input Fields
-  UI.clearInputFields();
-
-  // Closing the form after Submit
-  form__div.style.display = "none";
-
-  UI.showAlert("New book Successfully has been added!", 'success');
-});
-
-// Event: Remove a Book
-document.querySelector(".books__container").addEventListener("click", (e) => {
-  UI.deleteBook(e.target);
-
-  // Remove book from the Store
-  Store.removeBook(e.target.previousElementSibling.previousElementSibling.childNodes[2].nextElementSibling.firstChild.nextSibling.textContent);
-  // console.log(e.target.previousElementSibling.previousElementSibling.childNodes[2].nextElementSibling.firstChild.nextSibling.innerText);
-  
-});
-
-// Event:  Read a Book
-document.querySelector(".books__container").addEventListener("click", (e) => {
-  UI.readBook(e.target);
-});
-
-
-const addBookBtn = document.querySelector("#addBookBtn");
-const form__div = document.querySelector(".form__div");
-const loginBtn = document.querySelector("#loginBtn");
-const accountBtn = document.querySelector("#accountBtn");
-const logoutBtn = document.querySelector("#logoutBtn");
-const account = document.querySelector("#account");
-const accountModal = document.querySelector("#accountText");
+const setupNavbar = (user) => {
+  if (user) {
+    loggedIn.classList.add('active')
+    loggedOut.classList.remove('active')
+  } else {
+    loggedIn.classList.remove('active')
+    loggedOut.classList.add('active')
+  }
+  loadingRing.classList.remove('active')
+}
 
 const setupAccountModal = (user) => {
   if (user) {
@@ -171,97 +75,211 @@ const setupAccountModal = (user) => {
   }
 }
 
-// Opening the pop up window
-addBookBtn.addEventListener('click', () => {
-  form__div.style.display = "flex";
-});
+const openAddBookModal = () => {
+  addBookForm.reset()
+  addBookModal.classList.add('active')
+  overlay.classList.add('active')
+}
 
-// Firebase Auth
-const firebaseApp = firebase.initializeApp({
-    apiKey: "AIzaSyBdVe3AOMZaVP2i15ZdnGebdKUMH90LtwA",
-    authDomain: "book-app-33f1f.firebaseapp.com",
-    projectId: "book-app-33f1f",
-    storageBucket: "book-app-33f1f.appspot.com",
-    messagingSenderId: "747748073551",
-    appId: "1:747748073551:web:89a52e5ade17e3dd144a3a",
-    measurementId: "G-R9BR5DLLZD"
-});
+const closeAddBookModal = () => {
+  addBookModal.classList.remove('active')
+  overlay.classList.remove('active')
+  errorMsg.classList.remove('active')
+  errorMsg.textContent = ''
+}
 
+const openAccountModal = () => {
+  accountModal.classList.add('active')
+  overlay.classList.add('active')
+}
 
+const closeAccountModal = () => {
+  accountModal.classList.remove('active')
+  overlay.classList.remove('active')
+}
 
-const auth = firebase.auth();
+const closeAllModals = () => {
+  closeAddBookModal()
+  closeAccountModal()
+}
+
+const handleKeyboardInput = (e) => {
+  if (e.key === 'Escape') closeAllModals()
+}
+
+const updateBooksGrid = () => {
+  resetBooksGrid()
+  for (let book of library.books) {
+    createBookCard(book)
+  }
+}
+
+const resetBooksGrid = () => {
+  booksGrid.innerHTML = ''
+}
+
+const createBookCard = (book) => {
+  const bookCard = document.createElement('div')
+  const title = document.createElement('p')
+  const author = document.createElement('p')
+  const pages = document.createElement('p')
+  const buttonGroup = document.createElement('div')
+  const readBtn = document.createElement('button')
+  const removeBtn = document.createElement('button')
+
+  bookCard.classList.add('book-card')
+  buttonGroup.classList.add('button-group')
+  readBtn.classList.add('btn')
+  removeBtn.classList.add('btn')
+  readBtn.onclick = toggleRead
+  removeBtn.onclick = removeBook
+
+  title.textContent = `"${book.title}"`
+  author.textContent = book.author
+  pages.textContent = `${book.pages} pages`
+  removeBtn.textContent = 'Remove'
+
+  if (book.isRead) {
+    readBtn.textContent = 'Read'
+    readBtn.classList.add('btn-light-green')
+  } else {
+    readBtn.textContent = 'Not read'
+    readBtn.classList.add('btn-light-red')
+  }
+
+  bookCard.appendChild(title)
+  bookCard.appendChild(author)
+  bookCard.appendChild(pages)
+  buttonGroup.appendChild(readBtn)
+  buttonGroup.appendChild(removeBtn)
+  bookCard.appendChild(buttonGroup)
+  booksGrid.appendChild(bookCard)
+}
+
+const getBookFromInput = () => {
+  const title = document.getElementById('title').value
+  const author = document.getElementById('author').value
+  const pages = document.getElementById('pages').value
+  const isRead = document.getElementById('isRead').checked
+  return new Book(title, author, pages, isRead)
+}
+
+const addBook = (e) => {
+  e.preventDefault()
+  const newBook = getBookFromInput()
+
+  if (library.isInLibrary(newBook)) {
+    errorMsg.textContent = 'This book already exists in your library'
+    errorMsg.classList.add('active')
+    return
+  }
+
+  if (auth.currentUser) {
+    addBookDB(newBook)
+  } else {
+    library.addBook(newBook)
+    saveLocal()
+    updateBooksGrid()
+  }
+
+  closeAddBookModal()
+}
+
+const removeBook = (e) => {
+  const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
+    '"',
+    ''
+  )
+
+  if (auth.currentUser) {
+    removeBookDB(title)
+  } else {
+    library.removeBook(title)
+    saveLocal()
+    updateBooksGrid()
+  }
+}
+
+const toggleRead = (e) => {
+  const title = e.target.parentNode.parentNode.firstChild.innerHTML.replaceAll(
+    '"',
+    ''
+  )
+  const book = library.getBook(title)
+
+  if (auth.currentUser) {
+    toggleBookIsReadDB(book)
+  } else {
+    book.isRead = !book.isRead
+    saveLocal()
+    updateBooksGrid()
+  }
+}
+
+accountBtn.onclick = openAccountModal
+addBookBtn.onclick = openAddBookModal
+overlay.onclick = closeAllModals
+addBookForm.onsubmit = addBook
+window.onkeydown = handleKeyboardInput
+
+// Local Storage
+
+const saveLocal = () => {
+  localStorage.setItem('library', JSON.stringify(library.books))
+}
+
+const restoreLocal = () => {
+  const books = JSON.parse(localStorage.getItem('library'))
+  if (books) {
+    library.books = books.map((book) => JSONToBook(book))
+  } else {
+    library.books = []
+  }
+}
+
+// Auth
+
+// const auth = firebase.auth()
+const logInBtn = document.getElementById('logInBtn')
+const logOutBtn = document.getElementById('logOutBtn')
 
 auth.onAuthStateChanged(async (user) => {
   if (user) {
-    accountBtn.style.display = "flex";
-    logoutBtn.style.display = "flex";
-    loginBtn.style.display = "none";
-    setupRealTimeListener();
+    setupRealTimeListener()
   } else {
-    if (unsubscribe) unsubscribe();
-    document.addEventListener("DOMContentLoaded", UI.displayBooks());
+    if (unsubscribe) unsubscribe()
+    restoreLocal()
+    updateBooksGrid()
   }
-  setupAccountModal(user);
+  setupAccountModal(user)
+  setupNavbar(user)
 })
 
-const signInWithGoogle = () => {
-  const googleProvider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(googleProvider)
-  .then(() => {
-    location.reload();
-    console.log()
-    auth.onAuthStateChanged;
-  })
-  .catch(error => {
-    console.log(error);
-  })
+const signIn = () => {
+  const provider = new firebase.auth.GoogleAuthProvider()
+  auth.signInWithPopup(provider)
 }
 
 const signOut = () => {
   auth.signOut()
-  accountBtn.style.display = "none";
-    logoutBtn.style.display = "none";
-    loginBtn.style.display = "flex";
 }
 
+logInBtn.onclick = signIn
+logOutBtn.onclick = signOut
 
-// // Opening the login popup window
-// loginBtn.addEventListener('click', (e) => {
-//   login__div.style.display = "flex";
-// });
-// // Listen for outside click
-window.addEventListener("click", (e) => {
-  if (e.target == account) {
-    account.style.display = "none";
-  }
-});
+// Firestore
 
-window.addEventListener("click", (e) => {
-  if (e.target == form__div) {
-    form__div.style.display = "none";
-  }
-})
-
-accountBtn.addEventListener("click", () => {
-  account.style.display = "flex";
-})
-
-// Events;
-loginBtn.addEventListener("click", signInWithGoogle);
-logoutBtn.addEventListener("click", signOut);
-
-// FireStore
-const db = firebase.firestore()
+// const db = firebase.firestore()
 let unsubscribe
 
 const setupRealTimeListener = () => {
-  let books = Store.getBooks();
   unsubscribe = db
     .collection('books')
     .where('ownerId', '==', auth.currentUser.uid)
     .orderBy('createdAt')
     .onSnapshot((snapshot) => {
-      books = docsToBooks(snapshot.docs)
+      library.books = docsToBooks(snapshot.docs)
+      updateBooksGrid()
     })
 }
 
@@ -275,6 +293,12 @@ const removeBookDB = async (title) => {
     .delete()
 }
 
+const toggleBookIsReadDB = async (book) => {
+  db.collection('books')
+    .doc(await getBookIdDB(book.title))
+    .update({ isRead: !book.isRead })
+}
+
 const getBookIdDB = async (title) => {
   const snapshot = await db
     .collection('books')
@@ -284,21 +308,6 @@ const getBookIdDB = async (title) => {
   const bookId = snapshot.docs.map((doc) => doc.id).join('')
   return bookId
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Utils
 
