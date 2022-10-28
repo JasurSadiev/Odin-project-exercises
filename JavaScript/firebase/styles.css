@@ -1,93 +1,168 @@
-* {
-  margin: 0;
-  padding: 0;
+:root {
+  --white: #fffbfb;
+  --grey: #f0eef1;
+  --black: #050505;
+  --red: #ff7070;
+  --light-green: #9fff9c;
+  --light-red: #ff9c9c;
+  --border-radius: 8px;
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 40px;
+  --container-width: 1200px;
+  --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+/* CSS RESET */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
+html {
+  /* footer support */
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--grey);
+  color: var(--black);
   font-family: 'Poppins', sans-serif;
-}
-
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-}
-
-strong {
-  font-size: 36px;
-  font-weight: 900;
-}
-
-#loginBtn, #register, #login {
-  font-size: 24px;
-  border: none;
-  background-color: white;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 10px;
-  border: 1px solid white;
-  border-radius: 10px;
-}
-
-#accountBtn, #logoutBtn, #loginBtn {
-  display: none;
-}
-
-/* Main styling starts from here */
-
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 5rem;
+  font-size: 18px;
+  font-weight: 500;
+  word-wrap: break-word;
+  /* footer support */
   margin-bottom: 100px;
 }
 
-.main input {
-  font-size: 28px;
-  font-weight: 600;
-  padding: 10px 20px;
+button,
+input {
   border: none;
-  background-color: white;
-  border: 1px solid white;
-  align-self: center;
-}
-
-#addBookBtn {
-  /* margin-bottom: ; */
-}
-
-#addBookBtn:hover {
-  border: 1px solid rgb(176, 173, 173);
-  background-color: rgb(176, 173, 173);
-  color: white;
-  border-radius: 20px;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
   cursor: pointer;
+  outline: none;
 }
+
+input[type='text'],
+input[type='number'] {
+  cursor: text;
+}
+
+/* UTILS */
+
+.container {
+  max-width: var(--container-width);
+  padding: var(--spacing-lg);
+  margin: 0 auto;
+}
+
+.btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  transition: filter 0.15s ease-in-out;
+}
+
+.btn:hover {
+  filter: brightness(90%);
+}
+
+.btn-add {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.btn-light-green {
+  background-color: var(--light-green);
+}
+
+.btn-light-red {
+  background-color: var(--light-red);
+}
+
+/* HEADER */
+
+.header {
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logged-in,
+.logged-out {
+  display: none;
+}
+
+.logged-in.active,
+.logged-out.active {
+  display: flex;
+  gap: 20px;
+}
+
+/* MAIN */
+
+.main {
+  margin-top: var(--spacing-lg);
+  text-align: center;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 20px;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  line-height: 1.2;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* FOOTER */
 
 .footer {
-  display: flex;
-  justify-content: center;
-  position: fixed;
+  position: absolute;
   bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
-  height: 60px; 
-  text-align: center;
-  font-size: 24px;
-  font-weight: 500;
-  background-color: white;
-  padding-top: 20px;
+  padding: var(--spacing-sm);
 }
 
 .fa-github {
   font-size: 24px;
-  color: black;
+  color: var(--black);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -95,379 +170,126 @@ strong {
   transform: rotate(360deg) scale(1.2);
 }
 
-i {
-  margin-left: 10px;
-}
+/* MODALS */
 
-.form__div {
-  display: none;
-  z-index: 1;
-  
+.modal {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  background-color: var(--grey);
+  text-align: center;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.2s ease-in-out;
 }
 
-form {
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.add-book-form {
   display: flex;
   flex-direction: column;
-  row-gap: 40px;
-  background-color: rgb(240,238,241);
-  margin: auto auto;
-  padding: 20px 60px;
-  border-radius: 16px;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.4);
-  font-size: 24px;
-
-
-  animation-name: formOpen;
-  animation-duration: 1s;
+  align-items: center;
+  gap: var(--spacing-lg);
 }
 
-#checkbox, #title, #author, #page {
-  padding: 20px 10px;
-  border-radius: 10px;
-} 
-
-form > div > span {
-  font-size: 28px;
+.add-book-form button {
+  width: 100%;
 }
 
-#checkbox {
+.error-msg {
+  display: none;
+  color: red;
+}
+
+.error-msg.active {
+  display: block;
+  margin-top: -15px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--border-radius);
+}
+
+.is-read {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.checkbox {
   width: 20px;
   height: 20px;
-  cursor: pointer;
+  margin-top: 4px;
+  accent-color: white;
 }
 
-
-#submitBtn {
-  background-color: rgb(159,255,156);
-  font-weight: 600;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  padding: 20px 0;
-  margin-bottom: 10px;
-}
-
-form input {
-  border: none;
-  font-size: 24px;
-}
-
-@keyframes formOpen {
-  from { opacity: 0;}
-  to { opacity: 1;}
-}
-
-@keyframes formClose {
-  from { opacity: 1;}
-  to { opacity: 0;}
-}
-
-.books__container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 40px;
-  gap: 20px;
-}
-
-@media only screen and (max-width: 600px) {
-  .books__container {
-    flex-direction: column;
-    flex-wrap: nowrap;
-  }
-
-  strong {
-    font-size: 24px;
-  }
-
-  #loginBtn {
-    font-size: 16px;
-  }
-
-  #addBookBtn {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 22px;
-  }
-
-  form {
-    min-width: 300px;
-    font-size: 12px;
-    row-gap: 10px;
-    padding: 5px, 15px; 
-  }
-
-  #title, #author, #read, #removeBtn, #submitBtn, #page, #checkbox, form > div > span {
-    font-size: 12px;
-  }
-
-  #submitBtn {
-    padding: 5px, 0px;
-  }
-
-  i{
-    margin-left: 5px;
-  }
-
-  .book__section_author {
-    font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-    font-size: 20px;
-    padding-top: 1px;
-  }
-
-  .book__section, .book__section_given {
-    font-size: medium;
-  }
-
-
-  .footer {
-    font-size: 16px;
-  }
-
-  #checkbox {
-    width: 10px;
-    height: 10px;
-    cursor: pointer;
-  }
-
-  .alert {
-    display: flex;
-    width: auto;
-    padding: 2px 10px;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 8px;
-  }
-
-
-}
-.book__box {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
-  justify-content: center;
-  align-items: center;
-  row-gap: 10px;
-  font-size: 20px;
-  font-weight: 500;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-  
-  border: none;
-  padding: 10px 10px;
-}
-
-#read {
-  margin-top: 30px;
-  margin-bottom: 0;
-  border-radius: 10px;
-  background-color: rgb(157,252,154);
-  padding: 10px 37px;
-}
-
-#removeBtn {
-  background-color: rgb(240,240,240);
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-#read:hover {
-  background-color: #9ad796;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-#removeBtn:hover {
-  background-color: rgb(183, 181, 181);
-}
-
-.alert {
-  display: flex;
-  width: auto;
-  padding: 5px 20px;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  margin-bottom: 40px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 24px;
-}
-
-.alert-info {
-  background-color: rgb(23,162,184);
-  font-weight: 500;
-  color: white;
-  border: 1px solid rgb(23,162,184);
-  border-radius: 5px;
-  text-align: center;
-}
-.alert-danger {
-  background-color: rgb(220,53,69);
-  font-weight: 600;
-  color: white;
-  border: 1px solid rgb(220,53,69);
-  border-radius: 5px;
-  text-align: center;
-}
-
-.alert-success {
-  background-color: rgb(40,167,69);
-  font-weight: 600;
-  color: white;
-  border: 1px solid rgb(40,167,69);
-  border-radius: 5px;
-  text-align: center;
-}
-
-#title, #author, #page{
-  border: 2px solid rgb(240,238,241);
-}
-#title:focus, #author:focus, #page:focus{
-  outline: none !important;
-  border:2px solid rgb(72, 151, 212);
-  box-shadow: 0 0 10px #719ECE;
-}
-
-.book {
-  display: flex;
-  flex-direction: row;
-  column-gap: 20px;
-  margin-top: 20px;
-  
-}
-.book__section {
-  display: flex;
-  flex-direction: column;
-  justify-items: space-between;
-  text-align: left;
-  row-gap: 20px;
-  /* column-gap: 10px; */
-
-}
-
-.book__section_given {
-  text-align: right;
-  font-weight: 600;
-}
-
-/* Login Style */
-
-.login__div {
-  display: flex;
-}
-
-#login__div {
-  display: none;
-  z-index: 1;
-  
+.overlay {
   position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.input__div {
-  display: flex;
-  flex-direction: column;
-}
-
-.input__div > input {
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px 10px;
-}
-
-.input__div > input:focus{
-  outline: none !important;
-  border:2px solid rgb(245, 248, 96);
-  box-shadow: 0 0 10px #719ECE;
-}
-
-#account__div {
+  left: 0;
   display: none;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  font-size: 20px;
-  font-weight: 600;
-  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-#accountText {
-  display: flex ;
-  min-width: 500px;
-  height: 100px;
-  border: 1px solid black;
-  background-color: aliceblue;
-  font-weight: 500;
+.overlay.active {
+  display: block;
 }
 
-.userBtns {
-  display: flex;
-  width: 300px;
-  justify-content: space-between;
+/* LOADING RING */
+
+.lds-dual-ring {
+  display: none;
+  width: 38px;
+  height: 38px;
 }
 
-.userBtns button {
-  font-size: 24px;
-  border: none;
-  background-color: white;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 5px 10px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  vertical-align: auto;
-  border: 1px solid white;
+.lds-dual-ring:after {
+  content: ' ';
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 3px solid var(--black);
+  border-color: var(--black) transparent var(--black) transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
 }
 
-#loginBtn:hover, .userBtns button:hover {
-  border: 1px solid rgb(176, 173, 173);
-  background-color: rgb(176, 173, 173);
-  color: white;
-  border-radius: 10px;
-}
-#register:hover {
-  border: 1px solid rgb(176, 173, 173);
-  background-color: rgb(65, 145, 47);
-  color: white;
-  border-radius: 10px;
+.lds-dual-ring.active {
+  display: block;
 }
 
-#login:hover{
-  border: 1px solid rgb(176, 173, 173);
-  background-color: rgb(47, 94, 145);
-  color: white;
-  border-radius: 10px;
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.logged {
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-  font-style: italic;
-  padding: 5px 10px;
-}
+/* MEDIA QUERIES */
 
-#accountText {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  border-radius: 10px;
+@media (max-width: 400px) {
+  .header .container {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+  }
+
+  .main {
+    margin-top: 0;
+  }
+
+  :root {
+    --spacing-xl: 20px;
+  }
 }
