@@ -1,0 +1,13 @@
+{
+	"name": "webpack_freecodecamp",
+	"version": "1.0.0",
+	"private": true,
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "webpack"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
