@@ -1,3 +1,5 @@
+import { loadHome } from "./home";
+import { loadMenu } from "./menu";
 function createHeader() {
 	const header = document.createElement("header");
 	const restaurantName = document.createElement("h1");
@@ -9,7 +11,6 @@ function createHeader() {
 	return header;
 }
 
-import { loadHome } from "./home";
 function createNav() {
 	const nav = document.createElement("nav");
 
@@ -28,6 +29,7 @@ function createNav() {
 	menuBtn.addEventListener("click", (e) => {
 		if (e.target.classList.contains("active")) return;
 		setActiveButton(menuBtn);
+		loadMenu();
 	});
 
 	const contactBtn = document.createElement("button");
