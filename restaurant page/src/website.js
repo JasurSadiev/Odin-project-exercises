@@ -1,3 +1,4 @@
+import { loadContact } from "./contact";
 import { loadHome } from "./home";
 import { loadMenu } from "./menu";
 function createHeader() {
@@ -38,6 +39,7 @@ function createNav() {
 	contactBtn.addEventListener("click", (e) => {
 		if (e.target.classList.contains("active")) return;
 		setActiveButton(contactBtn);
+		loadContact();
 	});
 
 	nav.appendChild(homeBtn);
@@ -66,8 +68,33 @@ function createMain() {
 	return main;
 }
 
+function createFooter() {
+	const footer = document.createElement("footer");
+	footer.classList.add("footer");
+
+	const copyright = document.createElement("p");
+	copyright.textContent = `Copyright © ${new Date().getFullYear()} JasurSadiev`;
+
+	const githubLink = document.createElement("a");
+	githubLink.href = "https://github.com/JasurSadiev";
+
+	const githubIcon = document.createElement("i");
+	githubIcon.classList.add("fab");
+	githubIcon.classList.add("fa-github");
+
+	githubLink.appendChild(githubIcon);
+	footer.appendChild(copyright);
+	footer.appendChild(githubLink);
+
+	return footer;
+}
+
 export function initializeWebsite() {
 	const content = document.getElementById("content");
 	content.appendChild(createHeader());
 	content.appendChild(createMain());
+	content.appendChild(createFooter());
+
+	setActiveButton(document.querySelector(".nav-btns"));
+	loadHome();
 }
