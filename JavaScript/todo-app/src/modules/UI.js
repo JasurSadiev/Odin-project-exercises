@@ -12,4 +12,19 @@ export default class UI {
 		UI.openProject("Inbox", document.getElementById("button-inbox-projects"));
 		document.addEventListener("keydown", UI.handleKeyboardInput);
 	}
+
+	static loadProjects() {
+		Storage.getTodoList()
+			.getProjects()
+			.forEach((project) => {
+				if (
+					project.name !== "Inbox" &&
+					project.name !== "Today" &&
+					project.name !== "This week"
+				) {
+					UI.createProject(project.name);
+				}
+			});
+		UI.initAddProjectButtons();
+	}
 }
