@@ -26,6 +26,7 @@ export default class Storage {
 					project.getTasks().map((task) => Object.assign(new Task(), task))
 				)
 			);
+
 		return todoList;
 	}
 
@@ -47,9 +48,9 @@ export default class Storage {
 		Storage.saveTodoList(todoList);
 	}
 
-	static deleteTask(projectName, task) {
+	static deleteTask(projectName, taskName) {
 		const todoList = Storage.getTodoList();
-		todoList.getProject(projectName).deleteTask(task);
+		todoList.getProject(projectName).deleteTask(taskName);
 		Storage.saveTodoList(todoList);
 	}
 

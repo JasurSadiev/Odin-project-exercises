@@ -27,20 +27,20 @@ export default class TodoList {
 	}
 
 	addProject(newProject) {
-		if (this.projects.find((project) => project.name !== newProject.name)) {
-			return this.projects.push(newProject);
-		}
+		if (this.projects.find((project) => project.name === newProject.name))
+			return;
+		this.projects.push(newProject);
 	}
 
 	deleteProject(projectName) {
 		const projectToDelete = this.projects.find(
 			(project) => project.getName() === projectName
 		);
-		this.projects.splice(this.projects.indexOf(projectName), 1);
+		this.projects.splice(this.projects.indexOf(projectToDelete), 1);
 	}
 
 	updateTodayProject() {
-		this.getProjects("Today").tasks = [];
+		this.getProject("Today").tasks = [];
 
 		this.projects.forEach((project) => {
 			if (project.getName() === "Today" || project.getName() === "This week")
@@ -55,15 +55,15 @@ export default class TodoList {
 	}
 
 	updateWeekProject() {
-		this.getProjects("This week").tasks = [];
+		this.getProject("This week").tasks = [];
 
 		this.projects.forEach((project) => {
 			if (project.getName() === "Today" || project.getName() === "This week")
 				return;
 
-			const weekTasks = project.getTaskThisWeek();
+			const weekTasks = project.getTasksThisWeek();
 			weekTasks.forEach((task) => {
-				const taskName = `${task.getName} (${project.getName()})`;
+				const taskName = `${task.getName()} (${project.getName()})`;
 				this.getProject("This week").addTask(
 					new Task(taskName, task.getDate())
 				);
