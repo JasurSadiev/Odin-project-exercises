@@ -27,11 +27,11 @@ export default class Project {
 	}
 
 	contains(taskName) {
-		return this.tasks.contains((task) => task.getName() === taskName);
+		return this.tasks.some((task) => task.getName() === taskName);
 	}
 
 	addTask(newTask) {
-		if (this.tasks.find((task) => task.getName() === newTask)) return;
+		if (this.tasks.find((task) => task.getName() === newTask.name)) return;
 		this.tasks.push(newTask);
 	}
 
@@ -46,7 +46,7 @@ export default class Project {
 		});
 	}
 
-	getTaskThisWeek() {
+	getTasksThisWeek() {
 		return this.tasks.filter((task) => {
 			const taskDate = new Date(task.getDateFormatted());
 			return isThisWeek(subDays(toDate(taskDate), 1));
