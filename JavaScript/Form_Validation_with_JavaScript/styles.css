@@ -1,0 +1,68 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	background-color: cornsilk;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: large;
+	font-family: Arial, sans-serif;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	/* row-gap: 1rem; */
+	border: 2px solid rgb(12, 12, 13);
+	padding: 30px 0;
+	border-radius: 10px;
+}
+
+.inner_div {
+	display: flex;
+	flex-direction: column;
+	padding: 10px 20px;
+}
+
+.label {
+	font-weight: 600;
+}
+.input {
+	margin: 5px 0;
+	padding: 5px 10px;
+	border-radius: 5px;
+	font-size: large;
+	border: 2px solid black;
+}
+
+input:invalid {
+	border-color: #900;
+	background-color: #fdd;
+}
+
+input:focus:invalid {
+	outline: none;
+}
+
+/* This is the style of our error messages */
+.error {
+	width: 100%;
+	padding: 0;
+
+	font-size: 80%;
+	color: white;
+	background-color: #900;
+	border-radius: 0 0 5px 5px;
+
+	box-sizing: border-box;
+}
+
+.error.active {
+	padding: 0.3em;
+}
