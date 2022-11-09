@@ -3,3 +3,25 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+body {
+	display: flex;
+	flex-direction: column;
+	row-gap: 100px;
+	justify-content: center;
+	align-items: center;
+	margin-top: 100px;
+	font-size: large;
+}
+
+#button {
+	padding: 10px 20px;
+	border: none;
+	color: white;
+	background-color: darkred;
+}
+
+img {
+	min-width: 250px;
+	min-height: 250px;
+}
