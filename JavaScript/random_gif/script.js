@@ -19,7 +19,7 @@ const button = document.querySelector("#button");
 
 button.addEventListener("click", () => {
 	fetch(
-		"https://api.giphy.com/v1/gifs/translate?api_key=8pM558k3lIVq1BEZV2OiRlCUTrDDPcUs&s=cats",
+		"https://api.giphy.com/v1/gifs/translate?api_key=8pM558k3lIVq1BEZV2OiRlCUTrDDPcUs&s=animals",
 		{
 			mode: "cors",
 		}
