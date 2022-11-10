@@ -17,19 +17,14 @@ const button = document.querySelector("#button");
 // 		});
 // }
 
-button.addEventListener("click", () => {
-	fetch(
+button.addEventListener("click", async () => {
+	let response = await fetch(
 		"https://api.giphy.com/v1/gifs/translate?api_key=8pM558k3lIVq1BEZV2OiRlCUTrDDPcUs&s=animals",
 		{
 			mode: "cors",
 		}
-	)
-		.then(function (response) {
-			return response.json();
-		})
-		.then(function (response) {
-			img.src = "";
-			console.log(response.data.images.original.url);
-			img.src = response.data.images.original.url;
-		});
+	);
+
+	let data = await response.json();
+	img.src = data.data.images.original.url;
 });
