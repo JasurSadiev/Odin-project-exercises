@@ -18,13 +18,18 @@ const button = document.querySelector("#button");
 // }
 
 button.addEventListener("click", async () => {
-	let response = await fetch(
-		"https://api.giphy.com/v1/gifs/translate?api_key=8pM558k3lIVq1BEZV2OiRlCUTrDDPcUs&s=animals",
-		{
-			mode: "cors",
-		}
-	);
+	try {
+		let response = await fetch(
+			"https://api.giphy.com/v1/gifs/translate?api_key=8pM558k3lIVq1BEZV2OiRlCUTrDDPcUs&s=animals",
+			{
+				mode: "cors",
+			}
+		);
 
-	let data = await response.json();
-	img.src = data.data.images.original.url;
+		let data = await response.json();
+		img.src = data.data.images.original.url;
+	} catch (error) {
+		console.log(error.message);
+		alert(error);
+	}
 });
