@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://kit.fontawesome.com/4c536a6bd5.js"
+			crossorigin="anonymous"
+		></script>
+		<title>Weather</title>
+	</head>
+	<body>
+		<div id="container">
+			<nav id="nav">
+				<img src="./images/logo-removebg-preview.png" alt="logo" />
+				<div id="search-field">
+					<input type="text" id="input" />
+					<input type="button" value="Search" id="searchBtn" />
+				</div>
+				<button type="button" id="tempBtn">
+					<span id="celcius">°C</span>
+					/
+					<span id="faranheit">°F</span>
+				</button>
+			</nav>
+			<main id="main">
+				<div class="card" id="card">
+					<h2>Khujand</h2>
+					<h4>6.6 °C</h4>
+					<p>Fells like: 3.82 °C</p>
+					<p>Humidity: 87%</p>
+					<p>Wind: 4 km/h</p>
+				</div>
+			</main>
+			<footer class="footer">
+				<p>
+					Copyright ©
+					<script>
+						document.write(new Date().getFullYear());
+					</script>
+					Jasur Sadiev
+				</p>
+				<a href="https://github.com/JasurSadiev" target="_blank">
+					<i class="fab fa-github"></i
+				></a>
+			</footer>
+		</div>
+	</body>
+</html>
