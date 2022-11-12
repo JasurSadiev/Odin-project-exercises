@@ -13,18 +13,18 @@ const celcius = document.querySelector("#celcius");
 const fahranheit = document.querySelector("#faranheit");
 
 // Request and Fetching Data from API
-async function getData(city = "Khujand") {
+async function getData(city = "Khujand", unit = "metric") {
 	const response = await fetch(
-		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=786b6639c80d8c3478048d4c7a7e21e4`
+		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=786b6639c80d8c3478048d4c7a7e21e4`
 	);
 	const data = await response.json();
-	console.log(data);
-	tempBtn.addEventListener("click", () => {
-		celToFar(data);
-	});
+	// console.log(data);
+	changeTemp(data);
 	updateCard(data);
 	updateBackground(data);
 	updateWeatherStatus(data);
+	celcius.style.fontWeight = "600";
+	fahranheit.style.fontWeight = "500";
 	// returnData(data);
 	return data;
 }
@@ -32,16 +32,16 @@ async function getData(city = "Khujand") {
 // Getting City name
 function getCity() {
 	if (input.value) {
+		temperature.value = "";
 		// getData(input.value);
 		getData(input.value);
 	}
-	return;
 }
 
 // Loading document
-document.addEventListener("DOMContentLoaded", () => {
-	celcius.style.fontWeight = "600";
-});
+// document.addEventListener("DOMContentLoaded", () => {
+// 	celcius.style.fontWeight = "600";
+// });
 
 // Updating Card information
 function updateCard(data) {
@@ -87,6 +87,7 @@ function updateWeatherStatus(data) {
 function celToFar(data) {
 	const str = `"${temperature.innerHTML}"`;
 	console.log(str.includes("F"), str);
+	console.log(data);
 	if (str.includes("C")) {
 		celcius.style.fontWeight = "500";
 		let fahranheitTemp = data.main.temp * 1.8 + 32;
@@ -96,11 +97,24 @@ function celToFar(data) {
 		fahranheit.style.fontWeight = "600";
 	} else {
 		fahranheit.style.fontWeight = "500";
-		updateCard(data);
+		cityName.textContent = `${data.name}`;
+		temperature.textContent = `${data.main.temp} °C`;
+		feels.textContent = `Feels like: ${data.main.feels_like} °C`;
+		humidity.textContent = `Humidity: ${data.main.humidity}%`;
+		wind.textContent = `Wind: ${data.wind.speed} km/h`;
 		celcius.style.fontWeight = "600";
 	}
 }
 
+function changeTemp(data) {
+	cel;
+}
+
+tempBtn.addEventListener("click", (e) => {
+	// if (e.target)
+	// console.log(e.target);
+	celToFar(changeTemp);
+});
 // Event Listeners
 searchBtn.addEventListener("click", (e) => {
 	e.preventDefault();
