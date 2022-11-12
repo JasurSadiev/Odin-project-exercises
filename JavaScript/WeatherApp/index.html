@@ -16,7 +16,12 @@
 			<nav id="nav">
 				<img src="./images/logo1.png" alt="logo" id="logo" />
 				<div id="search-field">
-					<input type="text" id="input" placeholder="Enter a City..." />
+					<input
+						type="text"
+						id="input"
+						placeholder="Enter a City..."
+						required
+					/>
 					<input type="button" value="Search" id="searchBtn" />
 				</div>
 				<button type="button" id="tempBtn">
@@ -27,11 +32,17 @@
 			</nav>
 			<main id="main">
 				<div class="card" id="card">
-					<h2 id="cityName">Khujand</h2>
+					<div id="weather">
+						<img
+							id="weatherCondition"
+							src="http://openweathermap.org/img/wn/10d@2x.png"
+						/>
+						<h2 id="cityName">Khujand</h2>
+					</div>
 					<h4 id="temperature">6.6 °C</h4>
-					<p class="tempDetails">Fells like: 3.82 °C</p>
-					<p class="tempDetails">Humidity: 87%</p>
-					<p class="tempDetails">Wind: 4 km/h</p>
+					<p class="tempDetails" id="feels">Fells like: 3.82 °C</p>
+					<p class="tempDetails" id="humidity">Humidity: 87%</p>
+					<p class="tempDetails" id="wind">Wind: 4 km/h</p>
 				</div>
 			</main>
 			<footer class="footer">
@@ -48,4 +59,5 @@
 			</footer>
 		</div>
 	</body>
+	<script src="./script.js"></script>
 </html>
