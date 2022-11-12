@@ -12,6 +12,7 @@
 	flex-direction: column;
 }
 
+/* Navbar */
 #nav {
 	display: flex;
 	justify-content: space-between;
@@ -56,4 +57,49 @@
 	margin-left: -5px;
 	background-color: rgb(235, 111, 76);
 	color: white;
+}
+
+/* Main */
+#main {
+	height: 100%;
+	background: url(./images/jessica-fadel-SH4GNXNj1RA-unsplash.jpg) no-repeat
+		center center/cover;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#card {
+	border: 1px solid white;
+	border-radius: 25px;
+	background-color: rgba(254, 247, 247, 0.65);
+	min-width: 300px;
+	min-height: 350px;
+	font-size: large;
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: center;
+}
+
+.tempDetails {
+	font-size: 24px;
+	font-weight: 500;
+	padding: 20px 0px;
+}
+
+#cityName {
+	padding-top: 30px;
+	padding-bottom: 20px;
+	font-size: 32px;
+	font-weight: 900;
+}
+
+#temperature {
+	font-size: 28px;
+	font-weight: 600;
+	/* font-style: italic; */
+	font-family: "Arial Narrow", Arial, sans-serif;
 }
