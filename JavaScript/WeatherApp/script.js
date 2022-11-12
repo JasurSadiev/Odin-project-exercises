@@ -38,6 +38,11 @@ function getCity() {
 	return;
 }
 
+// Loading document
+document.addEventListener("DOMContentLoaded", () => {
+	celcius.style.fontWeight = "600";
+});
+
 // Updating Card information
 function updateCard(data) {
 	cityName.textContent = `${data.name}`;
