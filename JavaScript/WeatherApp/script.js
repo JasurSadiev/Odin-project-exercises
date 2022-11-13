@@ -25,13 +25,10 @@ async function getData(city = "Khujand", unit = "metric") {
 	);
 	const data = await response.json();
 	console.log(data);
-	// celToFar(data);
 	updateCard(data);
 	updateBackground(data);
 	updateWeatherStatus(data);
-	celcius.style.fontWeight = "600";
-	fahranheit.style.fontWeight = "500";
-	// returnData(data);
+	setUpConvert();
 	return data;
 }
 
@@ -44,10 +41,10 @@ function getCity() {
 	}
 }
 
-// Loading document
-// document.addEventListener("DOMContentLoaded", () => {
-// 	celcius.style.fontWeight = "600";
-// });
+// Loading Content
+document.addEventListener("DOMContentLoaded", () => {
+	getData("Khorugh");
+});
 
 // Updating Card information
 function updateCard(data) {
@@ -58,6 +55,12 @@ function updateCard(data) {
 	windInfo.textContent = `${data.wind.speed}`;
 	tempUnit.textContent = "°C";
 	feelsUnit.textContent = "°C";
+}
+
+// Setting up Convert button
+function setUpConvert() {
+	celcius.style.fontWeight = "600";
+	fahranheit.style.fontWeight = "500";
 }
 
 // Updating background image depending on weither
