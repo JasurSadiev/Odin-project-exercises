@@ -11,6 +11,12 @@ const weatherCondition = document.querySelector("#weatherCondition");
 const tempBtn = document.querySelector("#tempBtn");
 const celcius = document.querySelector("#celcius");
 const fahranheit = document.querySelector("#faranheit");
+const tempInfo = document.querySelector("#temp_info");
+const feelsInfo = document.querySelector("#feels_info");
+const humidityInfo = document.querySelector("#humidity_info");
+const windInfo = document.querySelector("#wind_info");
+const tempUnit = document.querySelector("#tempUnit");
+const feelsUnit = document.querySelector("#feelsUnit");
 
 // Request and Fetching Data from API
 async function getData(city = "Khujand", unit = "metric") {
@@ -18,8 +24,8 @@ async function getData(city = "Khujand", unit = "metric") {
 		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=786b6639c80d8c3478048d4c7a7e21e4`
 	);
 	const data = await response.json();
-	// console.log(data);
-	changeTemp(data);
+	console.log(data);
+	// celToFar(data);
 	updateCard(data);
 	updateBackground(data);
 	updateWeatherStatus(data);
@@ -46,10 +52,12 @@ function getCity() {
 // Updating Card information
 function updateCard(data) {
 	cityName.textContent = `${data.name}`;
-	temperature.textContent = `${data.main.temp} °C`;
-	feels.textContent = `Feels like: ${data.main.feels_like} °C`;
-	humidity.textContent = `Humidity: ${data.main.humidity}%`;
-	wind.textContent = `Wind: ${data.wind.speed} km/h`;
+	tempInfo.textContent = `${data.main.temp}`;
+	feelsInfo.textContent = `${data.main.feels_like}`;
+	humidityInfo.textContent = `${data.main.humidity}`;
+	windInfo.textContent = `${data.wind.speed}`;
+	tempUnit.textContent = "°C";
+	feelsUnit.textContent = "°C";
 }
 
 // Updating background image depending on weither
@@ -84,39 +92,40 @@ function updateWeatherStatus(data) {
 }
 
 // Converting Celcuis to Faranheit
-function celToFar(data) {
-	const str = `"${temperature.innerHTML}"`;
-	console.log(str.includes("F"), str);
-	console.log(data);
+function celToFar() {
+	const str = `"${tempUnit.innerHTML}"`;
+	// console.log(str.includes("F"), str);
+	console.log(str);
 	if (str.includes("C")) {
+		console.log(tempInfo.innerHTML);
 		celcius.style.fontWeight = "500";
-		let fahranheitTemp = data.main.temp * 1.8 + 32;
-		let fahranheitFeels = data.main.feels_like * 1.8 + 32;
-		temperature.textContent = `${fahranheitTemp.toFixed(2)} °F`;
-		feels.textContent = `Feels like: ${fahranheitFeels.toFixed(2)} °F`;
+		const fahranheitTemp = parseFloat(tempInfo.innerHTML) / 1.8 + 32;
+		const fahranheitFeels = parseFloat(feelsInfo.innerHTML) / 1.8 + 32;
+		tempInfo.textContent = `${fahranheitTemp.toFixed(2)}`;
+		tempUnit.textContent = "°F";
+		feelsInfo.textContent = `${fahranheitFeels.toFixed(2)}`;
+		feelsUnit.textContent = "°F";
 		fahranheit.style.fontWeight = "600";
-	} else {
+	} else if (str.includes("F")) {
 		fahranheit.style.fontWeight = "500";
-		cityName.textContent = `${data.name}`;
-		temperature.textContent = `${data.main.temp} °C`;
-		feels.textContent = `Feels like: ${data.main.feels_like} °C`;
-		humidity.textContent = `Humidity: ${data.main.humidity}%`;
-		wind.textContent = `Wind: ${data.wind.speed} km/h`;
+		const fahranheitTemp = (parseFloat(tempInfo.innerHTML) - 32) * 1.8;
+		const fahranheitFeels = (parseFloat(feelsInfo.innerHTML) - 32) * 1.8;
+		tempInfo.textContent = `${fahranheitTemp.toFixed(2)}`;
+		tempUnit.textContent = "°C";
+		feelsInfo.textContent = `${fahranheitFeels.toFixed(2)}`;
+		feelsUnit.textContent = "°C";
 		celcius.style.fontWeight = "600";
 	}
 }
 
-function changeTemp(data) {
-	cel;
-}
-
-tempBtn.addEventListener("click", (e) => {
-	// if (e.target)
-	// console.log(e.target);
-	celToFar(changeTemp);
-});
 // Event Listeners
 searchBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 	getCity();
+});
+
+tempBtn.addEventListener("click", (e) => {
+	// if (e.target)
+	// console.log(e.target);
+	celToFar();
 });
