@@ -27,15 +27,6 @@
 	animation-fill-mode: forwards;
 }
 
-@keyframes fadeInAnimation {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-
 /* Navbar */
 #nav {
 	display: flex;
@@ -92,6 +83,12 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.animation1 {
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
 }
 
 #card {
@@ -180,5 +177,15 @@
 
 	#nav {
 		padding: 5px 16px;
+	}
+}
+
+/* Animations */
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
