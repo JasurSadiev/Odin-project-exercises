@@ -51,6 +51,7 @@
 	border-radius: 5px;
 	border: none;
 	font-size: large;
+	cursor: pointer;
 }
 
 .leftSwitch {
