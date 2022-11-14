@@ -4,11 +4,22 @@
 	box-sizing: border-box;
 }
 
-#container {
+#loader_div {
 	width: 100vw;
 	height: 100vh;
 
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+}
+
+#container {
+	width: 100vw;
+	height: 100vh;
+
+	display: none;
 	flex-direction: column;
 }
 
