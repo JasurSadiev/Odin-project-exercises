@@ -56,8 +56,6 @@ function removeLoading() {
 	container.style.display = "flex";
 }
 
-// Showing main
-
 // Loading Content
 document.addEventListener("DOMContentLoaded", () => {
 	getData("Khorugh");
@@ -79,6 +77,8 @@ function updateCard(data) {
 function setUpConvert() {
 	celcius.style.fontWeight = "600";
 	fahranheit.style.fontWeight = "500";
+	tempBtn.classList.add("leftSwitch");
+	tempBtn.classList.remove("rightSwitch");
 }
 
 // Updating background image depending on weither
@@ -120,6 +120,7 @@ function celToFar() {
 	if (str.includes("C")) {
 		console.log(tempInfo.innerHTML);
 		celcius.style.fontWeight = "500";
+		tempBtn.classList.remove("leftSwitch");
 		const fahranheitTemp = parseFloat(tempInfo.innerHTML) / 1.8 + 32;
 		const fahranheitFeels = parseFloat(feelsInfo.innerHTML) / 1.8 + 32;
 		tempInfo.textContent = `${fahranheitTemp.toFixed(2)}`;
@@ -127,8 +128,10 @@ function celToFar() {
 		feelsInfo.textContent = `${fahranheitFeels.toFixed(2)}`;
 		feelsUnit.textContent = "°F";
 		fahranheit.style.fontWeight = "600";
+		tempBtn.classList.add("rightSwitch");
 	} else if (str.includes("F")) {
 		fahranheit.style.fontWeight = "500";
+		tempBtn.classList.remove("rightSwitch");
 		const fahranheitTemp = (parseFloat(tempInfo.innerHTML) - 32) * 1.8;
 		const fahranheitFeels = (parseFloat(feelsInfo.innerHTML) - 32) * 1.8;
 		tempInfo.textContent = `${fahranheitTemp.toFixed(2)}`;
@@ -136,6 +139,7 @@ function celToFar() {
 		feelsInfo.textContent = `${fahranheitFeels.toFixed(2)}`;
 		feelsUnit.textContent = "°C";
 		celcius.style.fontWeight = "600";
+		tempBtn.classList.add("leftSwitch");
 	}
 }
 
