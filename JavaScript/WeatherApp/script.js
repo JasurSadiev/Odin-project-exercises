@@ -19,6 +19,7 @@ const tempUnit = document.querySelector("#tempUnit");
 const feelsUnit = document.querySelector("#feelsUnit");
 const loadingScreen = document.querySelector("#loader_div");
 const container = document.querySelector("#container");
+// const main = document.querySelector("#main");
 
 // Request and Fetching Data from API
 async function getData(city = "Khujand", unit = "metric") {
@@ -27,6 +28,7 @@ async function getData(city = "Khujand", unit = "metric") {
 	);
 	const data = await response.json();
 	console.log(data);
+	main.classList.add("animation1");
 	updateCard(data);
 	updateBackground(data);
 	updateWeatherStatus(data);
@@ -139,6 +141,8 @@ function celToFar() {
 
 // Event Listeners
 searchBtn.addEventListener("click", (e) => {
+	console.log(main.classList);
+	main.classList.remove("animation1");
 	e.preventDefault();
 	getCity();
 });
