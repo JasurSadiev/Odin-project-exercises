@@ -17,6 +17,8 @@ const humidityInfo = document.querySelector("#humidity_info");
 const windInfo = document.querySelector("#wind_info");
 const tempUnit = document.querySelector("#tempUnit");
 const feelsUnit = document.querySelector("#feelsUnit");
+const loadingScreen = document.querySelector("#loader_div");
+const container = document.querySelector("#container");
 
 // Request and Fetching Data from API
 async function getData(city = "Khujand", unit = "metric") {
@@ -41,9 +43,23 @@ function getCity() {
 	}
 }
 
+// loading screen animation
+const timerId = setTimeout(() => {
+	removeLoading();
+}, 5000);
+
+// remove loading screen
+function removeLoading() {
+	loadingScreen.style.display = "none";
+	container.style.display = "flex";
+}
+
+// Showing main
+
 // Loading Content
 document.addEventListener("DOMContentLoaded", () => {
 	getData("Khorugh");
+	timerId;
 });
 
 // Updating Card information
