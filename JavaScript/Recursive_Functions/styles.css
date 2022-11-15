@@ -4,14 +4,49 @@
 	box-sizing: border-box;
 }
 
+#title {
+	color: #fff;
+	font-size: 28px;
+	font-weight: 600;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
 #container {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 
 	width: 100vw;
 	height: 100vh;
 
 	background-color: cadetblue;
+}
+
+.method-container {
+	display: flex;
+	flex-direction: column;
+	row-gap: 3px;
+}
+
+.input-text {
+	border-radius: 5px;
+	border: none;
+	padding: 8px 30px;
+}
+
+.input-button {
+	width: 100px;
+	padding: 5px 20px;
+	border-radius: 5px;
+	border: 2px solid red;
+	align-self: flex-end;
+	background: rgb(243, 245, 242);
+	color: black;
+}
+
+.label {
+	color: rgb(5, 6, 7);
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
