@@ -19,6 +19,8 @@ const tempUnit = document.querySelector("#tempUnit");
 const feelsUnit = document.querySelector("#feelsUnit");
 const loadingScreen = document.querySelector("#loader_div");
 const container = document.querySelector("#container");
+const form = document.querySelector("form");
+const searchField = document.querySelector("#search-field");
 // const main = document.querySelector("#main");
 
 // Request and Fetching Data from API
@@ -144,10 +146,10 @@ function celToFar() {
 }
 
 // Event Listeners
-searchBtn.addEventListener("click", (e) => {
+form.addEventListener("submit", (e) => {
+	e.preventDefault();
 	console.log(main.classList);
 	main.classList.remove("animation1");
-	e.preventDefault();
 	getCity();
 });
 
@@ -156,3 +158,4 @@ tempBtn.addEventListener("click", (e) => {
 	// console.log(e.target);
 	celToFar();
 });
+document.querySelector("#input").autofocus = true;
