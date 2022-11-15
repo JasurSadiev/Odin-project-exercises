@@ -1,17 +1,21 @@
 // DOM Elements
-const inputText = document.querySelectorAll(".input-text");
-const inputButton = document.querySelectorAll(".input-button");
+const inputText = document.getElementsByClassName("input-text");
+const inputButton = document.getElementsByClassName("input-button");
 
 let total = 0;
+
 function sumUp(num) {
-	if (num === 1) {
-		alert(++total);
+	// console.log(num);
+	if (num <= 0) {
+		return total;
 	}
 	total += num;
-	sumUp(num - 1);
+	num--;
+	return sumUp(num);
 }
 
 inputButton[0].addEventListener("click", (e) => {
 	e.preventDefault();
-	sumUp(parseInt(inputText.value));
+	console.log(sumUp(parseInt(inputText[0].value)));
+	total = 0;
 });
