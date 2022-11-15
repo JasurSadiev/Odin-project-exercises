@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href="./images/title_img.png" />
 		<script
 			src="https://kit.fontawesome.com/4c536a6bd5.js"
 			crossorigin="anonymous"
@@ -120,15 +121,16 @@
 		<div id="container">
 			<nav id="nav">
 				<img src="./images/logo1.png" alt="logo" id="logo" />
-				<div id="search-field">
+				<form id="search-field">
 					<input
 						type="text"
 						id="input"
 						placeholder="Enter a City..."
 						required
+						autofocus
 					/>
-					<input type="button" value="Search" id="searchBtn" />
-				</div>
+					<input type="submit" value="Search" id="searchBtn" />
+				</form>
 				<button type="button" id="tempBtn">
 					<span id="celcius">°C</span>
 					/
