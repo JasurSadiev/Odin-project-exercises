@@ -25,6 +25,13 @@ function powerUp(base, exponent) {
 	return powerUp(base, exponent);
 }
 
+function getFactorial(int) {
+	if (int <= 1) {
+		return 1;
+	} else {
+	}
+}
+
 // Event Listeners
 inputButton1[0].addEventListener("click", (e) => {
 	e.preventDefault();
