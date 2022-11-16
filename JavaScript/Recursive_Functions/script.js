@@ -25,10 +25,12 @@ function powerUp(base, exponent) {
 	return powerUp(base, exponent);
 }
 
+// Get Factorial
 function getFactorial(int) {
 	if (int <= 1) {
 		return 1;
 	} else {
+		return int * getFactorial(int - 1);
 	}
 }
 
@@ -51,4 +53,11 @@ inputButton1[1].addEventListener("click", (e) => {
 		parseInt(inputText1[1].value[2])
 	)}`;
 	total = 1;
+});
+
+inputButton1[2].addEventListener("click", (e) => {
+	e.preventDefault();
+	screen.textContent = `Answer: Get factorial(${
+		inputText1[2].value
+	}): ${getFactorial(parseInt(inputText1[2].value))}`;
 });
