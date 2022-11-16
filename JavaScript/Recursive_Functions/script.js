@@ -2,7 +2,6 @@
 const inputText1 = document.getElementsByClassName("input-text");
 const inputButton1 = document.getElementsByClassName("input-button");
 const screen = document.querySelector("#screen");
-le;
 
 // SumUp function
 function sumUp(num) {
@@ -25,6 +24,12 @@ function getFactorial(int) {
 		return 1;
 	}
 	return int * getFactorial(int - 1);
+}
+
+// Getting Sum of Array
+function getProduct(arr) {
+	if (arr.length === 0) return 1;
+	return parseInt(arr.shift()) * getProduct(arr);
 }
 
 // Event Listeners
@@ -51,4 +56,19 @@ inputButton1[2].addEventListener("click", (e) => {
 	screen.textContent = `Answer: Get factorial(${
 		inputText1[2].value
 	}): ${getFactorial(parseInt(inputText1[2].value))}`;
+});
+
+inputButton1[3].addEventListener("click", (e) => {
+	let arr1 = inputText1[3].value.split(",");
+	let arr2 = inputText1[3].value.replaceAll(" ", ",");
+	console.log(arr2[1]);
+	let arr = [];
+	for (let i = 0; i < arr1.length; i++) {
+		if (arr1[i]) {
+			arr.push(parseInt(arr1[i]));
+		}
+	}
+	screen.textContent = `Answer: Get product(${
+		inputText1[3].value
+	}): ${getProduct(arr)}`;
 });
