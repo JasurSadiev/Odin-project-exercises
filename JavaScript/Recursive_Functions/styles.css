@@ -9,7 +9,7 @@
 	font-size: 28px;
 	font-weight: 600;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 10px;
 }
 
 #container {
@@ -23,6 +23,16 @@
 	background-color: cadetblue;
 }
 
+#screen {
+	width: 500px;
+	height: 100px;
+	text-align: start;
+	padding: 10px 20px;
+
+	margin: 10px 0 40px 0;
+	border: none;
+}
+
 .method-container {
 	display: flex;
 	flex-direction: column;
@@ -33,6 +43,7 @@
 	border-radius: 5px;
 	border: none;
 	padding: 8px 30px;
+	min-width: 500px;
 }
 
 .input-button {
