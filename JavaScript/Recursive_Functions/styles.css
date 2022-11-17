@@ -48,13 +48,12 @@
 
 .input-button {
 	width: 100px;
-	padding: 5px 20px;
+	padding: 5px 10px;
 	border-radius: 5px;
 	border: 2px solid red;
 	align-self: flex-end;
 	background: rgb(243, 245, 242);
 	color: black;
-	text-align: center;
 }
 
 .label {
