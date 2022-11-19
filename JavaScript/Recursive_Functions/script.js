@@ -40,6 +40,51 @@ function getFibonachi(n) {
 	return [...arr, arr[n - 1] + arr[n - 2]];
 }
 
+// Merge Sort
+function getSortedArray(arr) {
+	const mergeSortRec = (arr) => {
+		if (arr.length === 0) return "Please provide a non empty array!";
+		if (arr.length === 1) return arr;
+
+		const mid = Math.floor(arr.length / 2);
+		const left = arr.slice(0, mid);
+		const right = arr.slice(mid, arr.length);
+
+		return merge(mergeSortRec(left), mergeSortRec(right));
+	};
+
+	const merge = (leftArr, rightArr) => {
+		//To merge the both incoming arrays
+		const result = new Array();
+
+		let iL = 0;
+		let iR = 0;
+
+		while (iL < leftArr.length && iR < rightArr.length) {
+			if (leftArr[iL] < rightArr[iR]) {
+				result.push(leftArr[iL]);
+				iL++;
+			} else {
+				result.push(rightArr[iR]);
+				iR++;
+			}
+		}
+
+		while (iL < leftArr.length) {
+			result.push(leftArr[iL]);
+			iL++;
+		}
+
+		while (iR < rightArr.length) {
+			result.push(rightArr[iR]);
+			iR++;
+		}
+		// console.log(result);
+
+		return result;
+	};
+	return mergeSortRec(arr);
+}
 // Event Listeners
 inputButton1[0].addEventListener("click", (e) => {
 	e.preventDefault();
@@ -68,8 +113,8 @@ inputButton1[2].addEventListener("click", (e) => {
 
 inputButton1[3].addEventListener("click", (e) => {
 	let arr1 = inputText1[3].value.split(",");
-	let arr2 = inputText1[3].value.replaceAll(" ", ",");
-	console.log(arr2[1]);
+	// let arr2 = inputText1[3].value.replaceAll(" ", ",");
+	// console.log(arr2[1]);
 	let arr = [];
 	for (let i = 0; i < arr1.length; i++) {
 		if (arr1[i]) {
@@ -85,4 +130,18 @@ inputButton1[4].addEventListener("click", () => {
 	screen.textContent = `Answer: getFibonachi(${
 		inputText1[4].value
 	}): ${getFibonachi(parseInt(inputText1[4].value))}`;
+});
+
+inputButton1[5].addEventListener("click", () => {
+	let arr1 = inputText1[5].value.split(",");
+	// console.log(arr1);
+	let arr = [];
+	for (let i = 0; i < arr1.length; i++) {
+		if (arr1[i]) {
+			arr.push(parseInt(arr1[i]));
+		}
+	}
+	screen.textContent = `Given array = [${arr1}]\n\nSorted array = [${getSortedArray(
+		arr
+	)}]`;
 });
