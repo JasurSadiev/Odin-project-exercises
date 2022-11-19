@@ -32,6 +32,14 @@ function getProduct(arr) {
 	return parseInt(arr.shift()) * getProduct(arr);
 }
 
+// Getting Fibonachchi Numbers
+function getFibonachi(n) {
+	if (n == 0) return [0];
+	if (n == 1) return [0, 1];
+	const arr = getFibonachi(n - 1);
+	return [...arr, arr[n - 1] + arr[n - 2]];
+}
+
 // Event Listeners
 inputButton1[0].addEventListener("click", (e) => {
 	e.preventDefault();
@@ -71,4 +79,10 @@ inputButton1[3].addEventListener("click", (e) => {
 	screen.textContent = `Answer: Get product(${
 		inputText1[3].value
 	}): ${getProduct(arr)}`;
+});
+
+inputButton1[4].addEventListener("click", () => {
+	screen.textContent = `Answer: getFibonachi(${
+		inputText1[4].value
+	}): ${getFibonachi(parseInt(inputText1[4].value))}`;
 });
