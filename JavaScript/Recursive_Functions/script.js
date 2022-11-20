@@ -91,7 +91,6 @@ inputButton1[0].addEventListener("click", (e) => {
 	screen.textContent = `Answer: sumRange(${inputText1[0].value}): ${sumUp(
 		parseInt(inputText1[0].value)
 	)}`;
-	// console.log(inputText1[1]);
 });
 
 inputButton1[1].addEventListener("click", (e) => {
@@ -113,8 +112,6 @@ inputButton1[2].addEventListener("click", (e) => {
 
 inputButton1[3].addEventListener("click", (e) => {
 	let arr1 = inputText1[3].value.split(",");
-	// let arr2 = inputText1[3].value.replaceAll(" ", ",");
-	// console.log(arr2[1]);
 	let arr = [];
 	for (let i = 0; i < arr1.length; i++) {
 		if (arr1[i]) {
@@ -134,7 +131,6 @@ inputButton1[4].addEventListener("click", () => {
 
 inputButton1[5].addEventListener("click", () => {
 	let arr1 = inputText1[5].value.split(",");
-	// console.log(arr1);
 	let arr = [];
 	for (let i = 0; i < arr1.length; i++) {
 		if (arr1[i]) {
