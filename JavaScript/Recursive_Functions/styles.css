@@ -4,6 +4,13 @@
 	box-sizing: border-box;
 }
 
+body {
+	width: 100vw;
+	height: 100vh;
+
+	background-color: cadetblue;
+}
+
 #title {
 	color: #fff;
 	font-size: 28px;
@@ -19,13 +26,11 @@
 
 	width: 100vw;
 	height: 100vh;
-
-	background-color: cadetblue;
 }
 
 #screen {
 	width: 500px;
-	height: 100px;
+	min-height: 100px;
 	text-align: start;
 	padding: 10px 20px;
 

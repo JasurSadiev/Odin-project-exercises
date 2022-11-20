@@ -5,39 +5,59 @@ const screen = document.querySelector("#screen");
 
 // SumUp function
 function sumUp(num) {
-	if (num <= 1) {
-		return num;
+	if (num) {
+		if (num <= 1) {
+			return num;
+		}
+		return num + sumUp(num - 1);
+	} else {
+		return "Invalid Input";
 	}
-	return num + sumUp(num - 1);
 }
 
 function powerUp(base, exponent) {
-	if (exponent <= 0) {
-		return 1;
+	if (base && exponent) {
+		if (exponent <= 0) {
+			return 1;
+		}
+		return base * powerUp(base, exponent - 1);
+	} else {
+		return "Invalid Input";
 	}
-	return base * powerUp(base, exponent - 1);
 }
 
 // Get Factorial
 function getFactorial(int) {
-	if (int <= 1) {
-		return 1;
+	if (int) {
+		if (int <= 1) {
+			return 1;
+		}
+		return int * getFactorial(int - 1);
+	} else {
+		return "Invalid Input";
 	}
-	return int * getFactorial(int - 1);
 }
 
 // Getting Sum of Array
 function getProduct(arr) {
-	if (arr.length === 0) return 1;
-	return parseInt(arr.shift()) * getProduct(arr);
+	if (arr) {
+		if (arr.length === 0) return 1;
+		return parseInt(arr.shift()) * getProduct(arr);
+	} else {
+		return "Invalid Error";
+	}
 }
 
 // Getting Fibonachchi Numbers
 function getFibonachi(n) {
-	if (n == 0) return [0];
-	if (n == 1) return [0, 1];
-	const arr = getFibonachi(n - 1);
-	return [...arr, arr[n - 1] + arr[n - 2]];
+	if (n) {
+		if (n == 0) return [0];
+		if (n == 1) return [0, 1];
+		const arr = getFibonachi(n - 1);
+		return [...arr, arr[n - 1] + arr[n - 2]];
+	} else {
+		return "Invalid Input";
+	}
 }
 
 // Merge Sort
