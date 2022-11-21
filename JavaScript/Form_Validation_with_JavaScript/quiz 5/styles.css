@@ -1,0 +1,48 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	align-items: center;
+
+	width: 100vw;
+	height: 100vh;
+	background-color: rgb(164, 162, 162);
+}
+
+form {
+	border: 2px solid black;
+	border-radius: 10px;
+	padding: 20px 20px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+	margin-bottom: 50px;
+	margin-top: 20px;
+	background-color: aliceblue;
+}
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	border: 3px solid purple;
+	padding: 0 20px;
+	background-color: rgb(234, 236, 236);
+}
+
+tr,
+td,
+th {
+	border: 1px solid purple;
+}
+
+#data {
+	visibility: hidden;
+	text-align: center;
+}
