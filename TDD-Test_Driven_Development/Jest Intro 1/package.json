@@ -1,0 +1,15 @@
+{
+	"name": "tdd-test_driven_development",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest",
+		"watch": "jest --watch *.js"
+	},
+	"author": "Jasur Sadiev",
+	"license": "ISC",
+	"devDependencies": {
+		"jest": "^29.3.1"
+	}
+}
