@@ -1,4 +1,4 @@
-const axios = require("axios");
+import { axios } from "axios";
 
 const functions = {
 	add: (num1, num2) => num1 + num2,
@@ -11,7 +11,7 @@ const functions = {
 	},
 	fetchUser: () =>
 		axios
-			.get("https://jsonplaceholder.typicode.com/users/")
+			.get("https://jsonplaceholder.typicode.com/users/1")
 			.then((res) => res.data)
 			.catch((err) => err),
 };
