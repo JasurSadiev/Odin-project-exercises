@@ -17,11 +17,38 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding-bottom: 0px;
+	margin-bottom: 20px;
+	border-bottom: 2px solid grey;
+	padding: 10px 20px;
+	width: 160px;
+}
+
+.book_title {
+	font-size: 12px;
+	/* margin-top: -6px; */
+}
+
+.book_price {
+	/* margin-top: -6px; */
+}
+
+.buttons {
+	/* font-size: 8px; */
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.book_desc {
+	font-size: 10px;
+	margin-top: 10px;
 }
 
 img {
-	width: 200px;
-	height: 300px;
+	width: 100px;
+	height: 140px;
 	object-fit: cover;
 	background-color: rgb(154, 212, 212);
 }
@@ -33,7 +60,10 @@ img {
 	cursor: pointer;
 	border: 1px solid rgb(245, 191, 191);
 	color: rgb(242, 100, 100);
-	margin-bottom: 2px;
+}
+
+.update_link {
+	text-decoration: none;
 }
 
 .update {
