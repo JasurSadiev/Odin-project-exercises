@@ -7,12 +7,18 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-	host: "localhost",
+	host: "127.0.0.1",
 	user: "root",
 	password: "password",
 	database: "test",
 	// insecureAuth: true,
 });
+
+if (!db) {
+	console.log("Not Connected");
+} else {
+	console.log("Connected");
+}
 
 app.get("/", (req, res) => {
 	res.json("hello");
