@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Edit from "../images/edit.png";
 import Delete from "../images/delete.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
 import axios from "axios";
 import moment from "moment";
@@ -11,13 +11,14 @@ const Single = () => {
 	const [post, setPost] = useState({});
 
 	const location = useLocation();
+	const navigate = useNavigate();
 	const postId = location.pathname.split("/")[2];
 	const {currentUser} = useContext(AuthContext);
 
 	useEffect(() => {
 		const fetchData = async ()=>{
 			try {
-				const res = await axios.get(`/post/${postId}`);
+				const res = await axios.get(`/posts/${postId}`);
 				setPost(res.data);
 			} catch (error) {
 				console.log(error);
@@ -25,6 +26,15 @@ const Single = () => {
 		}
 		fetchData();
 	}, [postId]);
+
+	const handleDelete = async () => {
+		try {
+			await axios.delete(`/posts/${postId}`);
+			navigate("/");
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	return (
 		<div className='single'>
@@ -34,10 +44,10 @@ const Single = () => {
 					alt=''
 				/>
 				<div className='user'>
-					<img
-						src='https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+					{post.userImg && <img
+						src={post.userImg}
 						alt=''
-					/>
+					/>}
 					<div className='info'>
 						<span>{post.username}</span>
 						<p>Posted {moment(post.date).fromNow()}</p>
@@ -46,7 +56,7 @@ const Single = () => {
 						<Link to={`/write?edit=2`}>
 							<img src={Edit} alt='edit' />
 						</Link>
-						<img src={Delete} alt='edit' />
+						<img src={Delete} alt='edit' onClick={handleDelete} />
 					</div>}
 				</div>
 				<h1>
