@@ -1,15 +1,36 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Edit from "../images/edit.png";
 import Delete from "../images/delete.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Menu from "../components/Menu";
+import axios from "axios";
+import moment from "moment";
+import { AuthContext } from "../context/authContext"
 
 const Single = () => {
+	const [post, setPost] = useState({});
+
+	const location = useLocation();
+	const postId = location.pathname.split("/")[2];
+	const {currentUser} = useContext(AuthContext);
+
+	useEffect(() => {
+		const fetchData = async ()=>{
+			try {
+				const res = await axios.get(`/post/${postId}`);
+				setPost(res.data);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		fetchData();
+	}, [postId]);
+
 	return (
 		<div className='single'>
 			<div className='content'>
 				<img
-					src='https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+					src={post?.img }
 					alt=''
 				/>
 				<div className='user'>
@@ -18,49 +39,20 @@ const Single = () => {
 						alt=''
 					/>
 					<div className='info'>
-						<span>John</span>
-						<p>Posted 2 days ago</p>
+						<span>{post.username}</span>
+						<p>Posted {moment(post.date).fromNow()}</p>
 					</div>
-					<div className='edit'>
+					{currentUser.username === post.username && <div className='edit'>
 						<Link to={`/write?edit=2`}>
 							<img src={Edit} alt='edit' />
 						</Link>
 						<img src={Delete} alt='edit' />
-					</div>
+					</div>}
 				</div>
 				<h1>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe
-					tempore quod harum iure, vero neque dignissimos nostrum labore
-					quibusdam minima?
+					{post.title}
 				</h1>
-				<p>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-						placeat saepe aspernatur ut non temporibus doloribus harum numquam
-						optio. Beatae vitae, molestias necessitatibus veniam, est dolorum
-						soluta fugit temporibus sunt iusto repudiandae quia, natus dolorem!
-						Ea illo, explicabo tempora aliquam, quas cupiditate ab eligendi
-						nostrum modi illum assumenda blanditiis reiciendis tenetur vero
-						maiores necessitatibus! Quidem minima et fugit quam. Necessitatibus
-						sint veritatis, itaque natus eveniet, magni modi quod incidunt, ut
-						libero sunt in harum beatae. Illum voluptate voluptatem nobis
-						aliquid ea! Voluptas, praesentium dolor minima quas neque architecto
-						perspiciatis consequatur, ad, aperiam cum ullam veniam. Sit iusto
-						labore neque tempora?
-						<br />
-						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Necessitatibus similique quos rerum minima ipsum! Porro, corporis
-						error. Necessitatibus magnam nostrum maiores quidem accusamus
-						tempora quae!
-						<br />
-						<br />
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-						enim voluptatibus aperiam non quibusdam! Corporis mollitia numquam
-						perferendis dolorum officiis ipsam odio ullam doloremque officia,
-						laudantium, blanditiis laboriosam eveniet cupiditate.
-					</p>
-				</p>
+				{post.desc}
 			</div>
 			<Menu />
 		</div>
