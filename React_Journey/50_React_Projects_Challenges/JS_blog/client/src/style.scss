@@ -148,7 +148,8 @@ $lightGreen: #b9e7e7;
 						&::after {
 							content: "";
 							width: 100%;
-							height: 100%;
+							min-height: 200px;
+							max-height: 400px;
 							background-color: $lightGreen;
 							position: absolute;
 							top: 20px;
@@ -173,9 +174,23 @@ $lightGreen: #b9e7e7;
 							font-size: 48px;
 						}
 
-						p {
+                      
+						.p {
+							max-height: 200px;
 							font-size: 18px;
+							overflow-y: hidden;
+							// width: 350px;
+							text-overflow: ellipsis; 
+							// white-space: wrap;
+							display: -webkit-box !important;
+							-webkit-line-clamp: 6;
+							-webkit-box-orient: vertical;
+							white-space: normal;
+
 						}
+
+						
+						
 
 						button {
 							width: max-content;
@@ -207,17 +222,24 @@ $lightGreen: #b9e7e7;
 				flex: 5;
 				display: flex;
 				flex-direction: column;
-				gap: 30px;
+				gap: 10px;
 
-				img {
-					width: 100%;
-					height: 300px;
-					object-fit: cover;
+				.img-wrapper {
+					display: grid;
+					border: 4px dashed grey;
+					margin-top: 20px;
+					
+					
+					
+					img {
+						width: 100%;
+						height: 300px;
+						object-fit: cover;
+					}
 				}
 
 				.user {
 					display: flex;
-					align-items: center;
 					gap: 10px;
 					font-size: 14px;
 					img {
@@ -225,21 +247,36 @@ $lightGreen: #b9e7e7;
 						height: 50px;
 						border-radius: 50%;
 						object-fit: cover;
+						padding-top: 15px;
+
 					}
-
-					span {
-						font-weight: bold;
-					}
-				}
-
-				.edit {
-					display: flex;
-					gap: 5px;
-
-					img {
-						width: 20px;
-						height: 20px;
-						cursor: pointer;
+					.info-container {
+						display: flex;
+						gap: 10px;
+						
+						.info {
+							
+							span {
+								font-weight: bold;
+								margin: 0px;
+								padding: 0px;
+								margin-bottom: -20px;
+							}
+							display: flex;
+							justify-content: center;
+							flex-direction: column;
+						}
+						
+						.edit {
+							display: flex;
+							gap: 5px;
+							
+							img {
+								width: 20px;
+								height: 20px;
+								cursor: pointer;
+							}
+						}
 					}
 				}
 
@@ -268,11 +305,24 @@ $lightGreen: #b9e7e7;
 					display: flex;
 					flex-direction: column;
 					gap: 10px;
+					
+					.menu-img {
+						
+						padding: 5px;
+						
+						img {
+							width: 100%;
+							height: 200px;
+							object-fit: cover;
+						}
+					}
 
-					img {
-						width: 100%;
-						height: 200px;
-						object-fit: cover;
+					.menu-img:nth-child(even) {
+						border: 4px outset lightblue;
+					}
+
+					.menu-img:nth-child(odd) {
+						border: 4px inset lightblue;
 					}
 
 					h2 {
@@ -320,6 +370,7 @@ $lightGreen: #b9e7e7;
 					height: 300px;
 					overflow: scroll;
 					border: 1px solid lightgray;
+					// margin-top: 20px;
 
 					.editor {
 						height: 100%;
@@ -347,6 +398,8 @@ $lightGreen: #b9e7e7;
 					h1 {
 						font-size: 20px;
 					}
+
+					
 
 					.file {
 						text-decoration: underline;

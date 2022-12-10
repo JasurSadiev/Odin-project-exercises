@@ -11,7 +11,7 @@ import DOMPurify from "dompurify";
 
 const Single = () => {
   const [post, setPost] = useState({});
-
+  let currentUser1 = null;
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,6 +19,24 @@ const Single = () => {
 
   const { currentUser } = useContext(AuthContext);
 
+  const handleUser = () => {
+    if (currentUser) {
+      if (currentUser.username === post.username) {
+        return true;
+      } else {
+        return;
+      }
+    } else if(!currentUser) {
+      return;
+    }
+  }
+  console.log(handleUser);
+
+  if (currentUser) {
+    currentUser1 = currentUser;
+  } else {
+    currentUser1 = {username: ""}
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,32 +58,31 @@ const Single = () => {
     }
   }
 
-  const getText = (html) =>{
-    const doc = new DOMParser().parseFromString(html, "text/html")
-    return doc.body.textContent
-  }
-
   return (
     <div className="single">
       <div className="content">
+        <div className="img-wrapper">
         <img src={`../upload/${post?.img}`} alt="" />
+        </div>
         <div className="user">
           {post.userImg && <img
             src={post.userImg}
             alt=""
           />}
-          <div className="info">
-            <span>{post.username}</span>
-            <p>Posted {moment(post.date).fromNow()}</p>
-          </div>
-          {currentUser.username === post.username && (
-            <div className="edit">
-              <Link to={`/write?edit=2`} state={post}>
-                <img src={Edit} alt="" />
-              </Link>
-              <img onClick={handleDelete} src={Delete} alt="" />
+          <div className="info-container">
+            <div className="info">
+              <span>{post.username}</span>
+              <p>Posted {moment(post.date).fromNow()}</p>
             </div>
-          )}
+            {handleUser() && (
+              <div className="edit">
+                <Link to={`/write?edit=2`} state={post}>
+                  <img src={Edit} alt="" />
+                </Link>
+                <img onClick={handleDelete} src={Delete} alt="" />
+              </div>
+            )}
+          </div>
         </div>
         <h1>{post.title}</h1>
         <p
@@ -73,7 +90,7 @@ const Single = () => {
             __html: DOMPurify.sanitize(post.desc),
           }}
         ></p>      </div>
-      <Menu cat={post.cat}/>
+      <Menu cat={post.cat} postId={post.img}/>
     </div>
   );
 };

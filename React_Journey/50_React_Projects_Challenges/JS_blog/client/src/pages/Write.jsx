@@ -7,12 +7,15 @@ import moment from "moment";
 
 const Write = () => {
   const state = useLocation().state;
+  console.log(state);
   const [value, setValue] = useState(state?.desc || "");
   const [title, setTitle] = useState(state?.title || "");
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState(state?.img || null);
   const [cat, setCat] = useState(state?.cat || "");
 
   const navigate = useNavigate()
+
+
 
   const upload = async () => {
     try {
@@ -32,9 +35,9 @@ const Write = () => {
     try {
       state
         ? await axios.put(`/posts/${state.id}`, {
-            title,
+            title: title,
             desc: value,
-            cat,
+            cat: cat,
             img: file ? imgUrl : "",
           })
         : await axios.post(`/posts/`, {
@@ -55,6 +58,8 @@ const Write = () => {
       <div className="content">
         <input
           type="text"
+          // theme="snow"
+          value = {title}
           placeholder="Title"
           onChange={(e) => setTitle(e.target.value)}
         />
