@@ -113,14 +113,14 @@ $lightGreen: #b9e7e7;
 
 		footer {
 			margin-top: 100px;
-			padding: 20px;
+			padding: 5px;
 			background-color: $lightGreen;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			font-size: 12px;
 			img {
-				height: 50px;
+				height: 80px;
 			}
 		}
 
@@ -136,6 +136,7 @@ $lightGreen: #b9e7e7;
 				.post {
 					display: flex;
 					gap: 100px;
+					
 
 					&:nth-child(2n + 1) {
 						flex-direction: row-reverse;

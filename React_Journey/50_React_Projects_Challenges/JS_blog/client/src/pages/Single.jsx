@@ -30,7 +30,7 @@ const Single = () => {
       return;
     }
   }
-  console.log(handleUser);
+  // console.log(handleUser);
 
   if (currentUser) {
     currentUser1 = currentUser;
