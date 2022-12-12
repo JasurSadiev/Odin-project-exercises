@@ -14,7 +14,12 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/posts${cat}`);
-        setPosts(res.data);
+        let shuffled = res.data
+          .map(value => ({ value, sort: Math.random() }))
+          .sort((a, b) => a.sort - b.sort)
+          .map(({ value }) => value)
+        setPosts(shuffled);
+        console.log(shuffled);
       } catch (err) {
         console.log(err);
       }
