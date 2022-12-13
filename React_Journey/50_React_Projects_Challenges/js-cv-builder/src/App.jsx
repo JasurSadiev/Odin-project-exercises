@@ -10,18 +10,20 @@ import Education from "./components/Education";
 
 function App() {
 	return (
-		<div className='App'>
-			<div className='header'>
-				<Header />
-				<Contact />
-				<Education />
-				<Languages />
-			</div>
-			<div className='content'>
-				<Profile />
-				<Experience />
-				<ProfessionalSkills />
-				<Interests />
+		<div id='App'>
+			<div className='App'>
+				<div className='header'>
+					<Header />
+					<Contact />
+					<Education />
+					<Languages />
+				</div>
+				<div className='content'>
+					<Profile />
+					<Experience />
+					<ProfessionalSkills />
+					<Interests />
+				</div>
 			</div>
 		</div>
 	);
