@@ -203,3 +203,17 @@
 .submitBtn:hover {
 	background: #00bd68;
 }
+
+.heading1 {
+	text-align: center;
+}
+
+.icons {
+	width: 36px;
+}
+
+.phone {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
