@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const EducationConstructor = () => {
+	const [items, setItems] = useState({});
+
+	useEffect(() => {
+		localStorage.setItem("educational", JSON.stringify(items));
+	}, [items]);
+
+	useEffect(() => {
+		const items = JSON.parse(localStorage.getItem("educational"));
+		if (items) {
+			setItems(items);
+		}
+	}, []);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		let education = {};
+		const uName = e.target.u_name.value;
+		const uDegree = e.target.u_degree.value;
+		const date = e.target.date.value;
+		const endDate = e.target.end_date.value;
+		education = {
+			uName,
+			uDegree,
+			date,
+			endDate,
+		};
+		setItems(education);
+	};
+
 	return (
 		<div className='constructor'>
-			<div className='name'>
+			<form className='name' onSubmit={handleSubmit}>
 				<h1 className='heading1'>Your Education Details</h1>
 				<div className='phone'>
 					<label htmlFor='date'> Start Year</label>
@@ -32,6 +61,7 @@ const EducationConstructor = () => {
 						id='u_name'
 						className='borderless'
 						placeholder='University Name'
+						name='u_name'
 					/>
 				</div>
 
@@ -48,7 +78,7 @@ const EducationConstructor = () => {
 				<button type='submit' className='submitBtn'>
 					Save
 				</button>
-			</div>
+			</form>
 		</div>
 	);
 };

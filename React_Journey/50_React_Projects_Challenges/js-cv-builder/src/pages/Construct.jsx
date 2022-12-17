@@ -6,9 +6,9 @@ import EducationConstructor from "../components/EducationConstructor";
 const Construct = () => {
 	return (
 		<div className='wrapper'>
-			{/* <NameConstructor /> */}
+			<NameConstructor />
 			{/* <ContactConstructor /> */}
-			<EducationConstructor />
+			{/* <EducationConstructor /> */}
 		</div>
 	);
 };

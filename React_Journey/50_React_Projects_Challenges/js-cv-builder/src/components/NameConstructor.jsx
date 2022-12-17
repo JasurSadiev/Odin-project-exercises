@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const NameConstructor = () => {
+	const [items, setItems] = useState({});
+
+	useEffect(() => {
+		localStorage.setItem("educational", JSON.stringify(items));
+	}, [items]);
+
+	useEffect(() => {
+		const items = JSON.parse(localStorage.getItem("educational"));
+		if (items) {
+			setItems(items);
+		}
+	}, []);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		let education = {};
+		const uName = e.target.u_name.value;
+		const uDegree = e.target.u_degree.value;
+		const date = e.target.date.value;
+		const endDate = e.target.end_date.value;
+		education = {
+			uName,
+			uDegree,
+			date,
+			endDate,
+		};
+		setItems(education);
+	};
+
 	const handleImgFile = (e) => {
 		const image = document.getElementById("output");
 		const label = document.getElementById("img__label");
@@ -8,6 +37,7 @@ const NameConstructor = () => {
 		image.style.display = "block";
 		label.classList.add("img__label");
 	};
+
 	return (
 		<div className='constructor'>
 			<div className='name'>
