@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Phone from "../img/phone.png";
 import Email from "../img/mail.png";
 import Github from "../img/github.png";
@@ -6,6 +6,19 @@ import LinkedIn from "../img/linkedin.png";
 import Address from "../img/address.png";
 
 const ContactConstructor = () => {
+	const [items, setItems] = useState({});
+
+	useEffect(() => {
+		localStorage.setItem("educational", JSON.stringify(items));
+	}, [items]);
+
+	useEffect(() => {
+		const items = JSON.parse(localStorage.getItem("educational"));
+		if (items) {
+			setItems(items);
+		}
+	}, []);
+
 	return (
 		<div className='constructor'>
 			<div className='name'>
