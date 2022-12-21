@@ -8,20 +8,50 @@ import Address from "../img/address.png";
 const ContactConstructor = () => {
 	const [items, setItems] = useState({});
 
-	useEffect(() => {
-		localStorage.setItem("educational", JSON.stringify(items));
-	}, [items]);
+	function isEmpty(obj) {
+		return Object.keys(obj).length === 0;
+	}
 
 	useEffect(() => {
-		const items = JSON.parse(localStorage.getItem("educational"));
-		if (items) {
-			setItems(items);
+		const items = window.localStorage.getItem("userContacts");
+		if (!isEmpty(items)) {
+			setItems(JSON.parse(items));
 		}
 	}, []);
 
+	useEffect(() => {
+		if (!isEmpty(items)) {
+			window.localStorage.setItem("userContacts", JSON.stringify(items));
+		} else {
+			console.log("Local Storage is Empty!");
+		}
+	}, [items]);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		let education = {};
+		const phone = e.target.phone.value;
+		const mail = e.target.email.value;
+		const github = e.target.github.value;
+		const linkedIn = e.target.linkedIn.value;
+		const address = e.target.address.value;
+		education = {
+			phone,
+			mail,
+			github,
+			linkedIn,
+			address,
+		};
+		setItems(education);
+		// 	e.target.imgLink.value = "";
+		// 	e.target.firstName.value = "";
+		// 	e.target.lastName.value = "";
+		// 	e.target.position.value = "";
+	};
+
 	return (
 		<div className='constructor'>
-			<div className='name'>
+			<form className='name' onSubmit={handleSubmit}>
 				<h1 className='heading1'>Your Contact Details</h1>
 				<div className='phone'>
 					<label htmlFor='phone'>
@@ -81,7 +111,7 @@ const ContactConstructor = () => {
 				<button type='submit' className='submitBtn'>
 					Save
 				</button>
-			</div>
+			</form>
 		</div>
 	);
 };

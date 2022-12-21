@@ -87,7 +87,7 @@
 	flex: 1;
 }
 
-figure {
+.figure {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -100,7 +100,7 @@ figure {
 	width: 192px;
 }
 
-figcaption {
+.figcaption {
 	margin-top: 0.5rem;
 }
 
@@ -119,6 +119,53 @@ figcaption {
 	background-color: #f9f5f58e;
 	border: none;
 	height: 1px;
+}
+
+/* Contact INFO Section */
+.contact_wrapper {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	margin-top: 1.5rem;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+.section_title {
+	font-size: large;
+	font-weight: 700;
+}
+
+.contact_figure1 {
+	display: flex;
+	margin-top: 1rem;
+}
+
+.contact_icon1 {
+	width: 24px;
+}
+
+.contact_figcaption1 {
+	padding-left: 1rem;
+	padding-bottom: 0.25rem;
+	font-size: medium;
+}
+
+.contact_figcaption {
+	padding-left: 1rem;
+}
+
+.contact_icons {
+	width: 30px;
+	height: 30px;
+}
+
+.contact_figure {
+	display: flex;
+	margin-top: 0.5rem;
 }
 
 .content {
