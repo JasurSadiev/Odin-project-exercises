@@ -1,49 +1,53 @@
 import React, { useEffect, useState } from "react";
 
+function isEmpty(obj) {
+	return Object.keys(obj).length === 0;
+}
+
 const NameConstructor = () => {
 	const [items, setItems] = useState({});
 
 	useEffect(() => {
-		localStorage.setItem("educational", JSON.stringify(items));
-	}, [items]);
-
-	useEffect(() => {
-		const items = JSON.parse(localStorage.getItem("educational"));
-		if (items) {
-			setItems(items);
+		const items = window.localStorage.getItem("userInfo");
+		if (!isEmpty(items)) {
+			setItems(JSON.parse(items));
 		}
 	}, []);
+
+	useEffect(() => {
+		if (!isEmpty(items)) {
+			window.localStorage.setItem("userInfo", JSON.stringify(items));
+		} else {
+			console.log("Local Storage is Empty!");
+		}
+	}, [items]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		let education = {};
-		const uName = e.target.u_name.value;
-		const uDegree = e.target.u_degree.value;
-		const date = e.target.date.value;
-		const endDate = e.target.end_date.value;
+		const imgLink = e.target.imgLink.value;
+		const firstName = e.target.firstName.value;
+		const lastName = e.target.lastName.value;
+		const position = e.target.position.value;
 		education = {
-			uName,
-			uDegree,
-			date,
-			endDate,
+			imgLink,
+			firstName,
+			lastName,
+			position,
 		};
 		setItems(education);
-	};
-
-	const handleImgFile = (e) => {
-		const image = document.getElementById("output");
-		const label = document.getElementById("img__label");
-		image.src = URL.createObjectURL(e.target.files[0]);
-		image.style.display = "block";
-		label.classList.add("img__label");
+		// 	e.target.imgLink.value = "";
+		// 	e.target.firstName.value = "";
+		// 	e.target.lastName.value = "";
+		// 	e.target.position.value = "";
 	};
 
 	return (
 		<div className='constructor'>
-			<div className='name'>
+			<form className='name' onSubmit={handleSubmit}>
 				<h1 className='header1'>How can employers contact you?</h1>
 				<div className='img'>
-					<p>
+					{/* <p>
 						<input
 							type='file'
 							accept='image/*'
@@ -56,14 +60,31 @@ const NameConstructor = () => {
 						<label for='file' id='img__label'>
 							Select Image
 						</label>
-					</p>
-					<p>
+					</p> */}
+
+					{/* <p>
 						<img id='output' alt='img' />
-					</p>
+					</p> */}
+					<input
+						type='text'
+						placeholder='Link for profile image...'
+						className='borderless inputLink'
+						id='imgLink'
+					/>
 				</div>
 				<div className='fullName'>
-					<input type='text' placeholder='First Name' className='borderless' />
-					<input type='text' placeholder='Last Name' className='borderless' />
+					<input
+						type='text'
+						placeholder='First Name'
+						className='borderless'
+						id='firstName'
+					/>
+					<input
+						type='text'
+						placeholder='Last Name'
+						className='borderless'
+						id='lastName'
+					/>
 				</div>
 				<input
 					type='text'
@@ -81,7 +102,7 @@ const NameConstructor = () => {
 				<button type='submit' className='submitBtn'>
 					Save
 				</button>
-			</div>
+			</form>
 		</div>
 	);
 };

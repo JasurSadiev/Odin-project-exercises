@@ -54,6 +54,21 @@
 	);
 }
 
+#App {
+	/* padding: 0;
+	margin: 0;
+	box-sizing: border-box; */
+	background: lightblue;
+
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+	min-height: 100vh;
+	font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .ready {
 	position: relative;
 	width: 100%;
@@ -70,6 +85,40 @@
 	background-color: #003147;
 	padding: 40px;
 	flex: 1;
+}
+
+figure {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.ready_img {
+	border-radius: 50%;
+	width: 192px;
+}
+
+figcaption {
+	margin-top: 0.5rem;
+}
+
+.ready_fullName {
+	font-weight: 900;
+	font-size: 28px;
+}
+
+.ready_position {
+	text-align: center;
+	color: #d4d2d2;
+}
+
+.hr {
+	margin-top: 1rem;
+	background-color: #f9f5f58e;
+	border: none;
+	height: 1px;
 }
 
 .content {
@@ -121,7 +170,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	/* align-items: center; */
 }
 
 #file {
@@ -155,6 +204,9 @@
 
 .fullName > input {
 	width: 180px;
+}
+
+.inputLink {
 }
 
 .borderless {

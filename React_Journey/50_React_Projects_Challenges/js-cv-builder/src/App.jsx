@@ -6,8 +6,8 @@ import EducationConstructor from "./components/EducationConstructor";
 function App() {
 	return (
 		<div className='App'>
-			{/* <Ready /> */}
-			<Construct />
+			<Ready />
+			{/* <Construct /> */}
 		</div>
 	);
 }
