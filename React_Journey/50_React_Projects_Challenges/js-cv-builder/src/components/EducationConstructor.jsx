@@ -3,31 +3,44 @@ import React, { useEffect, useState } from "react";
 const EducationConstructor = () => {
 	const [items, setItems] = useState({});
 
-	useEffect(() => {
-		localStorage.setItem("educational", JSON.stringify(items));
-	}, [items]);
+	function isEmpty(obj) {
+		return Object.keys(obj).length === 0;
+	}
 
 	useEffect(() => {
-		const items = JSON.parse(localStorage.getItem("educational"));
-		if (items) {
-			setItems(items);
+		const items = window.localStorage.getItem("educational");
+		if (!isEmpty(items)) {
+			setItems(JSON.parse(items));
 		}
 	}, []);
 
+	useEffect(() => {
+		if (!isEmpty(items)) {
+			window.localStorage.setItem("educational", JSON.stringify(items));
+		} else {
+			console.log("Local Storage is Empty!");
+		}
+	}, [items]);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		let startDate = e.target.date.value;
+		let endDate = e.target.end_date.value;
+		let fullDate = `${startDate.split("-")[0]}-${endDate.split("-")[0]}`;
 		let education = {};
+		const date = fullDate;
 		const uName = e.target.u_name.value;
-		const uDegree = e.target.u_degree.value;
-		const date = e.target.date.value;
-		const endDate = e.target.end_date.value;
+		const degree = e.target.u_degree.value;
 		education = {
-			uName,
-			uDegree,
 			date,
-			endDate,
+			uName,
+			degree,
 		};
 		setItems(education);
+		// 	e.target.imgLink.value = "";
+		// 	e.target.firstName.value = "";
+		// 	e.target.lastName.value = "";
+		// 	e.target.position.value = "";
 	};
 
 	return (

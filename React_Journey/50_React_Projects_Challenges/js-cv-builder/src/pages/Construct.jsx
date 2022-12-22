@@ -7,8 +7,8 @@ const Construct = () => {
 	return (
 		<div className='wrapper'>
 			{/* <NameConstructor /> */}
-			<ContactConstructor />
-			{/* <EducationConstructor /> */}
+			{/* <ContactConstructor /> */}
+			<EducationConstructor />
 		</div>
 	);
 };

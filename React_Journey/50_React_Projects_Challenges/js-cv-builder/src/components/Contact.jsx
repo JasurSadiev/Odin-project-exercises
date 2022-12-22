@@ -13,11 +13,10 @@ const Contact = () => {
 			setItems(items);
 		}
 	}, []);
-
-	const userName = items.github.split("/");
+	// const userName = items.github.split("/");
 
 	return (
-		<div className='contact_wrapper'>
+		<div className='section_wrapper'>
 			<h2 className='section_title'>CONTACT INFO</h2>
 			<figure className='contact_figure1'>
 				<img src={phone} alt='phone_icon' className='contact_icon1' />
@@ -36,14 +35,14 @@ const Contact = () => {
 			<figure className='contact_figure'>
 				<img src={github} alt='github_icon' className='contact_icons' />
 				<figcaption className='contact_figcaption'>
-					<a href={items.github}>Github: {userName[3]}</a>
+					<a href={items.github}>{items.github}</a>
 				</figcaption>
 			</figure>
 
 			<figure className='contact_figure'>
 				<img src={linkedin} alt='linkedIn_icon' className='contact_icons' />
 				<figcaption className='contact_figcaption'>
-					<a href={items.linkedIn}>LinkedIn {userName[3]}</a>
+					<a href={items.linkedIn}>{items.linkedIn}</a>
 				</figcaption>
 			</figure>
 
